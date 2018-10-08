@@ -2,6 +2,6 @@ package entity;
 
 public enum Esito {
 
-	POSITIVO,NEGATIVO,ERRORE;
+	POSITIVO,NEGATIVO,NON_ESEGUITO;
 
 }

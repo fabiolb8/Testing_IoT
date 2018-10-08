@@ -1,16 +1,52 @@
 package dao;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
 import entity.*;
 
 public class TXTTestSuiteDAO implements ITestSuiteDAO {
+
+	private String nomeFile;
+	
+	public TXTTestSuiteDAO(String nomeFile) {
+
+		this.nomeFile = nomeFile;
+	}
 
 	/**
 	 * 
 	 * @param testSuite
 	 */
 	public void print(TestSuite testSuite) {
-		// TODO - implement TXTTestSuiteDao.print
-		throw new UnsupportedOperationException();
+
+		//TS1 : numtestok timestamp
+		//TC1 : esito
+		//TC2 : esito
+		// _______
+		
+		FileOutputStream fileoutputstream = null;
+		PrintStream printstream = null;
+		
+		try {
+			fileoutputstream = new FileOutputStream(nomeFile,true);
+			printstream = new PrintStream(fileoutputstream);
+			
+			printstream.println("TS"+testSuite.getId()+": " + testSuite.getDataEsecuzione() + " Numero test OK: " + testSuite.getNumTestOk() +" su " +testSuite.getListaTestCase().size());
+			for (int i=0; i<testSuite.getListaTestCase().size(); i++) {
+				
+				TestCase test = testSuite.getListaTestCase().get(i);
+				printstream.println("TC"+test.getId()+": " + test.getEsito().name());	
+			}
+			printstream.println("__________________________________________________________");
+			
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 
 	@Override

@@ -82,13 +82,22 @@ public class TestSuite {
 			
 		}
 		
-		//calcolaNumTestOk();
+		calcolaNumTestOk();
 
 	}
 
 	public void calcolaNumTestOk() {
 		
+		int count = 0;
 		
+		for (int i=0; i<listaTestCase.size(); i++) {
+			
+			if (listaTestCase.get(i).getEsito()==Esito.POSITIVO)
+				count++;
+			
+		}
+		
+		setNumTestOk(count);
 	}
 
 	public void addTestCase (TestCase testCase) {

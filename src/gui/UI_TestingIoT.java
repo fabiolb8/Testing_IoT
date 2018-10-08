@@ -62,7 +62,7 @@ public class UI_TestingIoT {
 		GhostButton.setSize(1, 1);
 		
 		groupEsegui = new Group(shell, SWT.NONE);
-		groupEsegui.setBounds(23, 10, 660, 282);
+		groupEsegui.setBounds(23, 10, 502, 282);
 		
 		bottoneEseguiTS = new Button(groupEsegui, SWT.NONE);
 		
@@ -91,46 +91,46 @@ public class UI_TestingIoT {
 						
 			}
 		});
-		bottoneEseguiTS.setBounds(431, 128, 142, 35);
+		bottoneEseguiTS.setBounds(339, 169, 142, 35);
 		bottoneEseguiTS.setText("Esegui Test Suite");
 		
 		labelEseguiTestSuite = new Label(groupEsegui, SWT.NONE);
-		labelEseguiTestSuite.setBounds(61, 76, 307, 25);
+		labelEseguiTestSuite.setBounds(20, 82, 307, 25);
 		labelEseguiTestSuite.setText("Inserisci l'ID della test suite da eseguire");
 		
 		textFieldID_TS = new Text(groupEsegui, SWT.BORDER);
-		textFieldID_TS.setBounds(157, 130, 96, 31);
+		textFieldID_TS.setBounds(339, 79, 142, 31);
 		
 		progressBarEseguiTS = new ProgressBar(groupEsegui, SWT.INDETERMINATE);
-		progressBarEseguiTS.setBounds(378, 197, 260, 26);
+		progressBarEseguiTS.setBounds(339, 223, 142, 26);
 		progressBarEseguiTS.setVisible(false);
 		
 		groupConsole = new Group(shell, SWT.NONE);
-		groupConsole.setBounds(699, 10, 470, 579);
+		groupConsole.setBounds(575, 10, 599, 579);
 		
 		listConsole = new List(groupConsole, SWT.BORDER | SWT.V_SCROLL);
-		listConsole.setBounds(10, 75, 450, 420);
+		listConsole.setBounds(10, 75, 579, 420);
 		
 		lblConsole = new Label(groupConsole, SWT.NONE);
 		lblConsole.setAlignment(SWT.CENTER);
-		lblConsole.setBounds(10, 41, 450, 25);
+		lblConsole.setBounds(10, 41, 579, 25);
 		lblConsole.setText("Console");
 		
 		labelConsole = new Label(groupConsole, SWT.NONE);
 		labelConsole.setAlignment(SWT.CENTER);
-		labelConsole.setBounds(10, 517, 450, 25);
+		labelConsole.setBounds(10, 517, 579, 25);
 		labelConsole.setText("New Label");
 		labelConsole.setVisible(false);
 		
 		groupReport = new Group(shell, SWT.NONE);
-		groupReport.setBounds(21, 304, 662, 285);
+		groupReport.setBounds(21, 304, 502, 285);
 		
 		textField_NomeFileReport = new Text(groupReport, SWT.BORDER);
-		textField_NomeFileReport.setLocation(157, 124);
+		textField_NomeFileReport.setLocation(342, 70);
 		textField_NomeFileReport.setSize(151, 31);
 		
 		labelReport = new Label(groupReport, SWT.NONE);
-		labelReport.setLocation(157, 73);
+		labelReport.setLocation(10, 73);
 		labelReport.setSize(151, 25);
 		labelReport.setText("Nome file di report");
 		
@@ -157,6 +157,8 @@ public class UI_TestingIoT {
 					Timestamp timestamp=new Timestamp(System.currentTimeMillis());
 					sdf.format(timestamp);
 					UInomeFileReport=new String("report_"+timestamp.toString().replace(' ', '_'));
+					UInomeFileReport=new String("report_"+timestamp.toString().replace(':', '.'));
+
 					
 					UIReportThread t=new UIReportThread(UInomeFileReport);
 					t.start();
@@ -169,8 +171,8 @@ public class UI_TestingIoT {
 			}
 		});
 		
-		bottoneGeneraReport.setLocation(431, 122);
-		bottoneGeneraReport.setSize(139, 35);
+		bottoneGeneraReport.setLocation(342, 129);
+		bottoneGeneraReport.setSize(151, 35);
 		bottoneGeneraReport.setText("Genera Report");
 
 	}

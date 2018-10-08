@@ -6,17 +6,15 @@ import java.text.SimpleDateFormat;
 
 import org.eclipse.swt.widgets.Display;
 
-import controller.GestoreTestingIoT;
+import boundary.BTester;
 
 public class UIEseguiThread extends Thread{
 
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 	private Integer testSuiteID;
-	private String nomeFileXML;
 	
 	public UIEseguiThread(Integer testSuiteID) {
 		this.testSuiteID=testSuiteID;
-		this.nomeFileXML=new String("TS"+testSuiteID.toString()+".xml");
 	}
 	
 	
@@ -24,22 +22,19 @@ public class UIEseguiThread extends Thread{
 	public void run() {
 		super.run();
 		
+		
 		try {
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonEseguiTS(false));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleProgressBar(true));
 			
-			//
-			//Thread.sleep(1000);
-			GestoreTestingIoT.getInstance().eseguiTestSuite(testSuiteID);
-			
-			
-			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonEseguiTS(true));
-			
+			BTester tester = new BTester();
+			String esito_suite = tester.eseguiTestSuite(testSuiteID);
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-			String newLine=new String("Test Suite "+testSuiteID+" : "+sdf.format(timestamp).toString());
+		
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonEseguiTS(true));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Test Suite eseguita"));
-			Display.getDefault().asyncExec(() -> UI_TestingIoT.addElementToList(newLine));
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.addElementToList("["+sdf.format(timestamp).toString() + "]: " + esito_suite));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleProgressBar(false));
 		
 		} catch (FileNotFoundException f) {
@@ -48,8 +43,9 @@ public class UIEseguiThread extends Thread{
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonEseguiTS(true));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Test Suite non esistente"));
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Esecuzione interrotta"));
 		}

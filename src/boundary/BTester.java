@@ -1,18 +1,33 @@
 package boundary;
 
+import java.io.FileNotFoundException;
+
+import controller.GestoreTestingIoT;
+
 public class BTester {
 
 	/**
 	 * 
 	 * @param id
+	 * @throws FileNotFoundException 
 	 */
-	public void eseguiTestSuite(int id) {
+	public String eseguiTestSuite(int id) throws FileNotFoundException {
 		
+		GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
+		gestore.eseguiTestSuite(id);
+		int numOK = gestore.getCurrent().getNumTestOk();
+		int numTOT = gestore.getCurrent().getListaTestCase().size();
+		
+		String newLine=new String("Test Suite "+ id + ". Numero di test OK/TOT = " + numOK + "/" + numTOT);
+		
+		return newLine;
 	}
 
-	public void generaReport() {
-		// TODO - implement BTester.generaReport
-		throw new UnsupportedOperationException();
+	public void generaReport(String nomeFile) {
+
+		GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
+		gestore.generaReport(nomeFile);
+		
 	}
 
 }

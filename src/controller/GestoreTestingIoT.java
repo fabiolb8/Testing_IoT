@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
+import dao.TXTTestSuiteDAO;
 import dao.XMLTestSuiteDAO;
 import entity.*;
 
@@ -60,9 +61,20 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 	}
 
 	@Override
-	public void generaReport() {
-		// TODO Auto-generated method stub
+	public void generaReport(String nomeFile) {
+
+		TXTTestSuiteDAO txt_report_printer = new TXTTestSuiteDAO(nomeFile);
+		
+		for (int i=0; i<listaTestSuite.size(); i++)
+			txt_report_printer.print(listaTestSuite.get(i));
 		
 	}
+	
+	public TestSuite getCurrent() {
+		
+		TestSuite suite = listaTestSuite.get(listaTestSuite.size()-1);
+		
+		return suite;
+	} 
 
 }

@@ -20,6 +20,11 @@ public class TestCase {
 	private String descrizione;
 	private Esito esito;
 	
+	public TestCase() {
+
+		esito = Esito.NON_ESEGUITO;
+	}
+	
 	public List<Step> getListaStep() {
 		return listaStep;
 	}
@@ -31,22 +36,24 @@ public class TestCase {
 	public void calcolaEsito() {
 		// TODO - implement TestCase.calcolaEsito
 
-		boolean ok = true;
+		boolean bool_esito = true;
+		int i = 0;
 		
-		for (int i=0; i<listaStep.size(); i++) {
+		while (i<listaStep.size() && bool_esito) {
 			
-			if ((listaStep.get(i).getOutputAllarmeAtteso()==listaStep.get(i).getOutputAllarmeRilevato()) && (listaStep.get(i).getOutputAllarmeAtteso()==listaStep.get(i).getOutputAllarmeRilevato()))
-				ok = true;
-			else {
-				ok = false;
-				break;
-			}	
+			if ((listaStep.get(i).getOutputAllarmeAtteso() != listaStep.get(i).getOutputAllarmeRilevato()) 
+					|| (listaStep.get(i).getOutputVentilazioneAtteso() != listaStep.get(i).getOutputventilazioneRilevato()))
+				bool_esito = false;
+			
+			i++;
 			
 		}
 		
-		if (ok == true)
-			esito = Esito.POSITIVO;
-		else esito = Esito.NEGATIVO;
+		if (bool_esito)
+			setEsito(Esito.POSITIVO);
+		else 
+			setEsito(Esito.NEGATIVO);
+		
 	}
 
 	public void run() {
@@ -54,18 +61,19 @@ public class TestCase {
 
 		for (int i=0; i<listaStep.size(); i++) {
 			
-			listaStep.get(i).inviaInput();
 			
 			try {
 				//METTI 3000
+				listaStep.get(i).inviaInput();
 				Thread.sleep(300);
+				listaStep.get(i).leggiOutput();
+
 				//System.out.println("Attesa " + i + "terminata");
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				setEsito(Esito.NON_ESEGUITO);
+			} 
 			
-			listaStep.get(i).leggiOutput();
 			
 		}
 		

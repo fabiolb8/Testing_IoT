@@ -11,6 +11,6 @@ public interface IGestoreTestingIoT {
 	 */
 	void eseguiTestSuite(int id) throws FileNotFoundException;
 
-	void generaReport();
+	void generaReport(String nomeFile);
 
 }
