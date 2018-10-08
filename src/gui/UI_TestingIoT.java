@@ -102,7 +102,7 @@ public class UI_TestingIoT {
 		textFieldID_TS.setBounds(157, 130, 96, 31);
 		
 		progressBarEseguiTS = new ProgressBar(groupEsegui, SWT.INDETERMINATE);
-		progressBarEseguiTS.setBounds(498, 208, 260, 26);
+		progressBarEseguiTS.setBounds(378, 197, 260, 26);
 		progressBarEseguiTS.setVisible(false);
 		
 		groupConsole = new Group(shell, SWT.NONE);

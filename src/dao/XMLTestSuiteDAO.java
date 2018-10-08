@@ -1,5 +1,10 @@
 package dao;
 
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import entity.TestSuite;
 
 public class XMLTestSuiteDAO implements ITestSuiteDAO {
@@ -11,9 +16,39 @@ public class XMLTestSuiteDAO implements ITestSuiteDAO {
 	}
 
 	@Override
-	public TestSuite readTestSuite(int id) {
+	public TestSuite readTestSuite(int id) throws JAXBException {
 		// TODO Auto-generated method stub
-		return null;
+
+		TestSuite suite = null;
+
+		JAXBContext jaxbContext = JAXBContext.newInstance(TestSuite.class);
+	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		     
+	    //We had written this file in marshalling example
+	    suite = (TestSuite) jaxbUnmarshaller.unmarshal( new File("TS"+id+".xml") );
+		    
+		    /*
+		    System.out.println(suite.getId());
+	        System.out.println(suite.getDescrizione());
+			
+		    for(TestCase tc  : suite.getListaTestCase())
+		    {
+		        System.out.println(tc.getId());
+		        System.out.println(tc.getDescrizione());
+		        
+		        for(Step s  : tc.getListaStep())
+			    {
+			        System.out.println(s.getNumero());
+			        System.out.println(s.getInputFumo());
+			        System.out.println(s.getInputTemperatura_zona1());
+			        System.out.println(s.getInputTemperatura_zona2());
+			        System.out.println(s.getInputTemperatura_zona3());
+			        
+			    }
+		    }
+		    */
+        
+		return suite;
 	}
 
 	@Override
