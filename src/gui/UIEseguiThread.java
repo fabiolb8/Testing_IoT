@@ -26,6 +26,7 @@ public class UIEseguiThread extends Thread{
 		try {
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonEseguiTS(false));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleProgressBar(true));
+		
 			
 			BTester tester = new BTester();
 			String esito_suite = tester.eseguiTestSuite(testSuiteID);
@@ -36,7 +37,8 @@ public class UIEseguiThread extends Thread{
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Test Suite eseguita"));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.addElementToList("["+sdf.format(timestamp).toString() + "]: " + esito_suite));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleProgressBar(false));
-		
+			
+			
 		} catch (FileNotFoundException f) {
 			//f.printStackTrace();
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleProgressBar(false));
@@ -48,6 +50,9 @@ public class UIEseguiThread extends Thread{
 			//e.printStackTrace();
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Esecuzione interrotta"));
+		}
+		finally {
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonReport(true));
 		}
 		
 	}

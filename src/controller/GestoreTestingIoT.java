@@ -42,18 +42,26 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 		// TODO Auto-generated method stub
 		
 		XMLTestSuiteDAO xml_parser = new XMLTestSuiteDAO();
-		TestSuite suite;
+		TestSuite suite=null;
 		try {
 			
 			suite = xml_parser.readTestSuite(id);
 			
-			suite.run();
-			
-			aggiungiTestSuite(suite);
-
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			throw new FileNotFoundException();
+		}
+		
+		
+		try {
+	
+			suite.run();
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			aggiungiTestSuite(suite);
 		}
 		
 		

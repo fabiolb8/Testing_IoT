@@ -22,21 +22,21 @@ public class SimulatoreContesto {
 		return simulatore;
 	}
 	
-	public int leggiAllarme() {
+	public int leggiAllarme() throws Exception {
 		
 		Mbed mbed = Mbed.getInstance();
 
 		return mbed.rilevaAllarme();
 	}
 
-	public int leggiVentilazione() {
+	public int leggiVentilazione() throws Exception {
 		
 		Mbed mbed = Mbed.getInstance();
 		
 		return mbed.rilevaVentilazione();
 	}
 
-	public void avviaSimulazione() {
+	public void avviaSimulazione() throws Exception {
 		
 		Mbed mbed = Mbed.getInstance();
 		

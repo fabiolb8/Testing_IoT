@@ -71,6 +71,7 @@ public class UI_TestingIoT {
 			public void widgetSelected(SelectionEvent e) {
 				
 					setVisibleLabelConsole(false);
+					setEnableBottonReport(false);
 					
 					String testSuiteID=textFieldID_TS.getText();
 					if (!testSuiteID.isEmpty()) {
@@ -188,6 +189,12 @@ public class UI_TestingIoT {
 	public static void setEnableBottonEseguiTS(boolean bool) {
 		bottoneEseguiTS.setEnabled(bool);
 	}
+	
+	public static void setEnableBottonReport(boolean bool) {
+		bottoneGeneraReport.setEnabled(bool);
+	}
+	
+	
 	
 	public static void addElementToList(String newLine) {
 		listConsole.add(newLine);

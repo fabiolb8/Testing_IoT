@@ -131,7 +131,7 @@
             <inputTemperatura_zona2>1</inputTemperatura_zona2>
             <inputTemperatura_zona3>1</inputTemperatura_zona3>
             <outputAllarmeAtteso>1</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
         </Step>
         
         <Step>

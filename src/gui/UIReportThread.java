@@ -19,9 +19,19 @@ public class UIReportThread extends Thread {
 		BTester tester = new BTester();
 		tester.generaReport(nomeFileReport);
 		
+		try {
+		
 		Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
 		Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Report salvato correttamente"));
+	
+		
+		Runtime.getRuntime().exec("notepad ./"+nomeFileReport);
 
+		
+		}catch( Exception e) {
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Impossibile aprire il report"));
+		}
 		
 	}
 	

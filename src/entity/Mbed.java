@@ -34,14 +34,14 @@ public class Mbed {
 		return mbed_instance;
 	}
 
-	public void setUpRPCConnection() {
+	public void setUpRPCConnection() throws Exception {
 	
-		//String porta = getPortName();
-		String porta = "COM3";
+		String portName = getPortName();
+		//String porta = "COM3";
 
 		
         //Create an mbed object for communication over serial
-        mbed_connection = new SerialRxTxRPC(porta, 9600);
+        mbed_connection = new SerialRxTxRPC(portName, 9600);
         System.out.println("mbed RPC: ho creato la connessione seriale");
         
         //Create new Digital Outputs/Input on the mbed
@@ -55,7 +55,7 @@ public class Mbed {
 		
 	}
 	
-	private String getPortName() {
+	private String getPortName() throws Exception {
 		
 	     CommPortIdentifier serialPortId = null;
 	     //static CommPortIdentifier sSerialPortId;
@@ -77,7 +77,7 @@ public class Mbed {
 	 * 
 	 * @param input
 	 */
-	public void inviaSegnali(int input[]) {
+	public void inviaSegnali(int input[]) throws Exception {
 		
 		/*
 		for (int i=0; i<input.length; i++) {
@@ -92,7 +92,7 @@ public class Mbed {
 
 	}
 
-	public int rilevaAllarme() {
+	public int rilevaAllarme() throws Exception {
 		
 		int a4_value = a4.read();
 		System.out.println("Allarme rilevato: " + a4_value);
@@ -102,7 +102,7 @@ public class Mbed {
 		//return 0;
 	}
 
-	public int rilevaVentilazione() {
+	public int rilevaVentilazione() throws Exception {
 		
 		
 		int a5_value = a5.read();

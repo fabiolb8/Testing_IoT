@@ -56,7 +56,7 @@ public class TestCase {
 		
 	}
 
-	public void run() {
+	public void run() throws Exception {
 		
 
 		for (int i=0; i<listaStep.size(); i++) {
@@ -65,7 +65,7 @@ public class TestCase {
 			try {
 				//METTI 3000
 				listaStep.get(i).inviaInput();
-				Thread.sleep(300);
+				Thread.sleep(2000);
 				listaStep.get(i).leggiOutput();
 
 				//System.out.println("Attesa " + i + "terminata");

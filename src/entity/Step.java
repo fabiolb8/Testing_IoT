@@ -100,7 +100,7 @@ public class Step {
 	}
 
 
-	public void inviaInput() {
+	public void inviaInput() throws Exception {
 		
 		SimulatoreContesto sim = SimulatoreContesto.getInstance();
 		
@@ -110,7 +110,7 @@ public class Step {
 		
 	}
 
-	public void leggiOutput() {
+	public void leggiOutput() throws Exception {
 
 		SimulatoreContesto sim = SimulatoreContesto.getInstance();
 

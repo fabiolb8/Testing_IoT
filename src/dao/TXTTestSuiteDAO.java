@@ -30,7 +30,7 @@ public class TXTTestSuiteDAO implements ITestSuiteDAO {
 		PrintStream printstream = null;
 		
 		try {
-			fileoutputstream = new FileOutputStream(nomeFile,true);
+			fileoutputstream = new FileOutputStream(nomeFile,false);
 			printstream = new PrintStream(fileoutputstream);
 			
 			printstream.println("TS"+testSuite.getId()+": " + testSuite.getDataEsecuzione() + " Numero test OK: " + testSuite.getNumTestOk() +" su " +testSuite.getListaTestCase().size());
