@@ -2,7 +2,7 @@ package entity;
 
 public class SimulatoreContesto {
 
-	private final String descrizione = "Simulatore";
+	private final String descrizione = "Simulatore di un sistema di monitoraggio di fumo e ventilazione";
 	private final String deviceTarget = "STM32F401RE_Nucleo";
 	private int fumo;
 	private int temperature[];

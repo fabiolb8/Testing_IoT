@@ -15,8 +15,8 @@ public class BTester {
 		
 		GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
 		gestore.eseguiTestSuite(id);
-		int numOK = gestore.getCurrent().getNumTestOk();
-		int numTOT = gestore.getCurrent().getListaTestCase().size();
+		int numOK = gestore.getSuiteCorrente().getNumTestOk();
+		int numTOT = gestore.getSuiteCorrente().getListaTestCase().size();
 		
 		String newLine=new String("Test Suite "+ id + ". Numero di test OK/TOT = " + numOK + "/" + numTOT);
 		

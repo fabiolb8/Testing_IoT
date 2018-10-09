@@ -34,7 +34,6 @@ public class TestCase {
 	}	
 	
 	public void calcolaEsito() {
-		// TODO - implement TestCase.calcolaEsito
 
 		boolean bool_esito = true;
 		int i = 0;
@@ -63,14 +62,11 @@ public class TestCase {
 			
 			
 			try {
-				//METTI 3000
 				listaStep.get(i).inviaInput();
 				Thread.sleep(2000);
 				listaStep.get(i).leggiOutput();
 
-				//System.out.println("Attesa " + i + "terminata");
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				setEsito(Esito.NON_ESEGUITO);
 			} 
 			

@@ -59,6 +59,7 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 		
 		}catch(Exception e) {
 			e.printStackTrace();
+			//throw new SuiteException();
 		}
 		finally {
 			aggiungiTestSuite(suite);
@@ -76,13 +77,21 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 		for (int i=0; i<listaTestSuite.size(); i++)
 			txt_report_printer.print(listaTestSuite.get(i));
 		
+		
 	}
 	
-	public TestSuite getCurrent() {
+	public TestSuite getSuiteCorrente() {
 		
 		TestSuite suite = listaTestSuite.get(listaTestSuite.size()-1);
 		
 		return suite;
+	}
+
+
+	public List<TestSuite> getListaTestSuite() {
+		return listaTestSuite;
 	} 
+	
+	
 
 }

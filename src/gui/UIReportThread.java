@@ -3,6 +3,7 @@ package gui;
 import org.eclipse.swt.widgets.Display;
 
 import boundary.BTester;
+import controller.GestoreTestingIoT;
 
 public class UIReportThread extends Thread {
 	
@@ -16,21 +17,25 @@ public class UIReportThread extends Thread {
 	public void run() {
 		super.run();
 		
-		BTester tester = new BTester();
-		tester.generaReport(nomeFileReport);
 		
 		try {
 		
-		Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
-		Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Report salvato correttamente"));
-	
+		BTester tester = new BTester();
+		tester.generaReport(nomeFileReport);
 		
-		Runtime.getRuntime().exec("notepad ./"+nomeFileReport);
-
+		Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
+		
+		if (!GestoreTestingIoT.getInstance().getListaTestSuite().isEmpty()) {
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Report salvato correttamente"));
+			Runtime.getRuntime().exec("notepad ./"+nomeFileReport);
+		}
+		else {
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Report vuoto"));
+		}
 		
 		}catch( Exception e) {
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
-			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Impossibile aprire il report"));
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Impossibile generare il report"));
 		}
 		
 	}

@@ -13,6 +13,7 @@ public class Mbed {
 
 	private final String[] pin_input = {"a0_tx","a1_tx","a2_tx","a3_tx"};
 	private final String[] pin_output = {"a4_tx","a5_tx"};
+	private final int baudrate = 9600;
     
 	private static mbed mbed_connection;
     private DigitalOut a0;
@@ -41,7 +42,7 @@ public class Mbed {
 
 		
         //Create an mbed object for communication over serial
-        mbed_connection = new SerialRxTxRPC(portName, 9600);
+        mbed_connection = new SerialRxTxRPC(portName, baudrate);
         System.out.println("mbed RPC: ho creato la connessione seriale");
         
         //Create new Digital Outputs/Input on the mbed
@@ -78,12 +79,6 @@ public class Mbed {
 	 * @param input
 	 */
 	public void inviaSegnali(int input[]) throws Exception {
-		
-		/*
-		for (int i=0; i<input.length; i++) {
-			
-			System.out.println("input " + i + " =" + input[i]);
-		}*/
 		
 		a0.write(input[0]);
 		a1.write(input[1]);
