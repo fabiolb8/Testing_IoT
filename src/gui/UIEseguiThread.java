@@ -12,6 +12,7 @@ public class UIEseguiThread extends Thread{
 
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 	private Integer testSuiteID;
+	private static int countTSuiteEseguite;
 	
 	public UIEseguiThread(Integer testSuiteID) {
 		this.testSuiteID=testSuiteID;
@@ -29,7 +30,9 @@ public class UIEseguiThread extends Thread{
 		
 			
 			BTester tester = new BTester();
-			String esito_suite = tester.eseguiTestSuite(testSuiteID);
+			String esito_suite=tester.eseguiTestSuite(testSuiteID);
+			countTSuiteEseguite+=1;
+			
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonEseguiTS(true));
@@ -55,6 +58,11 @@ public class UIEseguiThread extends Thread{
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonReport(true));
 		}
 		
+	}
+	
+	
+	public static int getCountTSuiteEseguite() {
+		return countTSuiteEseguite;
 	}
 
 }

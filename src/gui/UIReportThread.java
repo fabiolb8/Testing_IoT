@@ -25,7 +25,8 @@ public class UIReportThread extends Thread {
 		
 		Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
 		
-		if (!GestoreTestingIoT.getInstance().getListaTestSuite().isEmpty()) {
+		if(UIEseguiThread.getCountTSuiteEseguite()>0) {
+		//if (!GestoreTestingIoT.getInstance().getListaTestSuite().isEmpty()) {
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Report salvato correttamente"));
 			Runtime.getRuntime().exec("notepad ./"+nomeFileReport);
 		}
