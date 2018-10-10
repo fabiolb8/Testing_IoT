@@ -34,7 +34,7 @@ public class UI_TestingIoT {
 	
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
-	/*
+	
 	public static void main(String[] args) {
 		try {
 			UI_TestingIoT window = new UI_TestingIoT();
@@ -42,15 +42,14 @@ public class UI_TestingIoT {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					UI_TestingIoT window = new UI_TestingIoT();
 					window.open();
@@ -60,7 +59,7 @@ public class UI_TestingIoT {
 			}
 		});
 		
-	}
+	}*/
 
 
 	public void open() {
@@ -93,7 +92,7 @@ public class UI_TestingIoT {
 		
 		bottoneEseguiTS.addSelectionListener(new SelectionAdapter() {
 			
-			/*@Override
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
 					setVisibleLabelConsole(false);
@@ -116,9 +115,9 @@ public class UI_TestingIoT {
 						setLabelConsole("Il campo ID è vuoto");
 					}
 						
-			}*/
+			}
 			
-			@Override
+			/*@Override
 			public void widgetSelected(SelectionEvent e) {
 				
 					setVisibleLabelConsole(false);
@@ -174,7 +173,7 @@ public class UI_TestingIoT {
 						setLabelConsole("Il campo ID è vuoto");
 					}
 						
-			}
+			}*/
 		});
 		bottoneEseguiTS.setBounds(339, 169, 142, 35);
 		bottoneEseguiTS.setText("Esegui Test Suite");
@@ -215,7 +214,7 @@ public class UI_TestingIoT {
 		textField_NomeFileReport.setSize(151, 31);
 		
 		labelReport = new Label(groupReport, SWT.NONE);
-		labelReport.setLocation(10, 73);
+		labelReport.setLocation(103, 73);
 		labelReport.setSize(151, 25);
 		labelReport.setText("Nome file di report");
 		
@@ -241,7 +240,6 @@ public class UI_TestingIoT {
 				else {
 					Timestamp timestamp=new Timestamp(System.currentTimeMillis());
 					sdf.format(timestamp);
-					UInomeFileReport=new String("report_"+timestamp.toString().replace(' ', '_'));
 					UInomeFileReport=new String("report_"+timestamp.toString().replace(':', '.'));
 
 					

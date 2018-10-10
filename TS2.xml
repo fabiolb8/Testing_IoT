@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <TestSuite>
-    <id>1</id>
+    <id>2</id>
     <descrizione>Prova veloce un esito ok e uno no</descrizione>
     
     <TestCase>
     	<id>1</id>
-    	<descrizione>ESITO POSITIVO</descrizione>
+    	<descrizione>Prova esito positivo</descrizione>
         
         <Step>
             <numero>1</numero>
@@ -22,7 +22,7 @@
    
    <TestCase>
     	<id>2</id>
-    	<descrizione>ESITO NEGATIVO</descrizione>
+    	<descrizione>Prova esito negativo</descrizione>
         
         <Step>
             <numero>1</numero>

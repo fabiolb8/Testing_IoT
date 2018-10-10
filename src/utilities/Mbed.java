@@ -40,8 +40,8 @@ public class Mbed {
 		try {
 			
 			//String portName = getPortName();
-			//String portName = "COM3";
-			String portName = null;
+			String portName = "COM4";
+			//String portName = null;
 		
 		    //Create an mbed object for communication over serial
 		    mbed_connection = new SerialRxTxRPC(portName, baudrate);
@@ -105,7 +105,7 @@ public class Mbed {
 		
 		try {
 			int a4_value = a4.read();
-			System.out.println("Allarme rilevato: " + a4_value);
+			//System.out.println("Allarme rilevato: " + a4_value);
 
 			
 			return a4_value;
@@ -123,7 +123,8 @@ public class Mbed {
 		
 		try {
 			int a5_value = a5.read();
-			System.out.println("Ventilazione rilevata: " + a5_value);
+			//System.out.println("Ventilazione rilevata: " + a5_value);
+			//System.out.println();
 
 			mbed_connection.delete();
 			

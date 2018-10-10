@@ -116,9 +116,16 @@ public class Step {
 
 		int allarme = sim.leggiAllarme();
 		setOutputAllarmeRilevato(allarme);
+		
 
 		int ventilazione = sim.leggiVentilazione();		
 		setOutputventilazioneRilevato(ventilazione);
+
+		System.out.println("Step numero "+this.numero);
+		System.out.println("	Allarme Rilevato : "+this.outputAllarmeRilevato);
+		System.out.println("	Ventilazione Rilevato : "+this.outputventilazioneRilevato);
+		System.out.println();
+		
 		
 	}
 

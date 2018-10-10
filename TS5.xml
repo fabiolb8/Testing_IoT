@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<TestSuite>
+    <id>5</id>
+    <descrizione>Ingresso fumo</descrizione>
+    
+    <TestCase>
+    	<id>1</id>
+    	<descrizione>Ingresso fumo basso</descrizione>
+        
+        <Step>
+            <numero>1</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>2</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>3</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+         <Step>
+            <numero>4</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>5</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>6</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>7</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
+        </Step>
+		
+		 <Step>
+            <numero>8</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
+        </Step>
+        
+        
+    </TestCase>
+   
+   <TestCase>
+    	<id>2</id>
+    	<descrizione>Ingresso fumo alto</descrizione>
+        
+		<Step>
+            <numero>1</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>2</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+         <Step>
+            <numero>3</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>4</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+
+		
+		
+        <Step>
+            <numero>5</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>6</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>7</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        
+        <Step>
+            <numero>8</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+    </TestCase>
+	
+	<TestCase>
+    	<id>3</id>
+    	<descrizione>Ingresso fumo random</descrizione>
+        
+        <Step>
+            <numero>1</numero>
+            <inputFumo>0</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>2</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        <Step>
+            <numero>3</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>0</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        
+        <Step>
+            <numero>4</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>0</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+        
+        <Step>
+            <numero>5</numero>
+            <inputFumo>1</inputFumo>
+            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona2>1</inputTemperatura_zona2>
+            <inputTemperatura_zona3>1</inputTemperatura_zona3>
+            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
+        </Step>
+        
+    </TestCase>
+   
+</TestSuite>

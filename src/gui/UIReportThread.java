@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.eclipse.swt.widgets.Display;
 
 import boundary.BTester;
+import controller.GestoreTestingIoT;
 import controller.PersistanceException;
 
 public class UIReportThread extends Thread {

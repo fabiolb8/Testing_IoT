@@ -5,7 +5,7 @@ import utilities.MbedException;
 
 public class SimulatoreContesto {
 
-	private final String descrizione = "Simulatore di un sistema di monitoraggio di fumo e ventilazione";
+	private final String descrizione = "Simulatore di un sistema di monitoraggio dei livelli di fumo e temperatura";
 	private final String deviceTarget = "STM32F401RE_Nucleo";
 	private int fumo;
 	private int temperature[];

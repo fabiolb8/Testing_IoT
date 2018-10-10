@@ -39,12 +39,12 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 	public void eseguiTestSuite(int id) throws PersistanceException, ConnectionException {
 		// TODO Auto-generated method stub
 		
-		try {
+		/*try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}*/
 		XMLTestSuiteDAO xml_parser = new XMLTestSuiteDAO();
 		TestSuite suite=null;
 		try {

@@ -1,8 +1,10 @@
 package dao;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.FileAlreadyExistsException;
 
 import entity.*;
 
@@ -30,23 +32,34 @@ public class TXTTestSuiteDAO implements ITestSuiteDAO {
 		PrintStream printstream = null;
 		
 		try {
-			fileoutputstream = new FileOutputStream(nomeFile,false);
+			
+		File file=new File(nomeFile);
+		
+		if (file.createNewFile()) {
+		
+			fileoutputstream = new FileOutputStream(file,true);
 			printstream = new PrintStream(fileoutputstream);
 			
 			printstream.println("TS"+testSuite.getId()+": " + testSuite.getDataEsecuzione() + " Numero test OK: " + testSuite.getNumTestOk() +" su " +testSuite.getListaTestCase().size());
 			for (int i=0; i<testSuite.getListaTestCase().size(); i++) {
 				
 				TestCase test = testSuite.getListaTestCase().get(i);
-				printstream.println("TC"+test.getId()+": " + test.getEsito().name());	
+				printstream.println("  TC"+test.getId()+": " + test.getEsito().name());	
 			}
 			printstream.println("__________________________________________________________");
 			
+			
+		}
+		else {
+			throw new DAOException("Questo report già esiste, provare con un altro nome");
+		}
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 
 			throw new DAOException("Impossibile generare il file di report");
 		}
+		
 		
 	}
 

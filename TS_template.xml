@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<TestSuite>
+    <id></id>
+    <descrizione></descrizione>
+    
+    <TestCase>
+    	<id></id>
+    	<descrizione></descrizione>
+        
+        <Step>
+            <numero></numero>
+            <inputFumo></inputFumo>
+            <inputTemperatura_zona1></inputTemperatura_zona1>
+            <inputTemperatura_zona2></inputTemperatura_zona2>
+            <inputTemperatura_zona3></inputTemperatura_zona3>
+            <outputAllarmeAtteso></outputAllarmeAtteso>
+            <outputVentilazioneAtteso></outputVentilazioneAtteso>
+        </Step>
+        
+    </TestCase>
+</TestSuite>
