@@ -69,7 +69,7 @@ public class TestSuite {
 		this.numTestOk = numTestOk;
 	}
 
-	public void run() throws Exception {
+	public void run() throws ConnectionException {
 		// TODO - implement TestSuite.run
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());

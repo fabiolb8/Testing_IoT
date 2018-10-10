@@ -19,7 +19,7 @@ public class TXTTestSuiteDAO implements ITestSuiteDAO {
 	 * 
 	 * @param testSuite
 	 */
-	public void print(TestSuite testSuite) {
+	public void print(TestSuite testSuite) throws DAOException{
 
 		//TS1 : numtestok timestamp
 		//TC1 : esito
@@ -44,7 +44,8 @@ public class TXTTestSuiteDAO implements ITestSuiteDAO {
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+
+			throw new DAOException("Impossibile generare il file di report");
 		}
 		
 	}

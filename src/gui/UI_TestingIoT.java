@@ -4,6 +4,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Group;
 
+import java.awt.EventQueue;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -11,6 +12,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
+import boundary.BTester;
+import controller.PersistanceException;
+import entity.ConnectionException;
+
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -28,7 +34,7 @@ public class UI_TestingIoT {
 	
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
-
+	/*
 	public static void main(String[] args) {
 		try {
 			UI_TestingIoT window = new UI_TestingIoT();
@@ -36,6 +42,24 @@ public class UI_TestingIoT {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}*/
+	
+	public static void main(String[] args) {
+
+		EventQueue.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					UI_TestingIoT window = new UI_TestingIoT();
+					window.open();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+			}
+		});
+		
 	}
 
 
@@ -53,6 +77,7 @@ public class UI_TestingIoT {
 
 	
 	protected void createContents() {
+		
 		shell = new Shell(SWT.SHELL_TRIM & ~SWT.RESIZE & SWT.TITLE | SWT.CLOSE | SWT.BORDER); 
 		shell.setSize(1201, 655);
 		shell.setText("Sistema Testing IoT");
@@ -67,7 +92,8 @@ public class UI_TestingIoT {
 		bottoneEseguiTS = new Button(groupEsegui, SWT.NONE);
 		
 		bottoneEseguiTS.addSelectionListener(new SelectionAdapter() {
-			@Override
+			
+			/*@Override
 			public void widgetSelected(SelectionEvent e) {
 				
 					setVisibleLabelConsole(false);
@@ -79,6 +105,64 @@ public class UI_TestingIoT {
 							
 							UIEseguiThread t=new UIEseguiThread(Integer.parseInt(testSuiteID));
 							t.start();
+							
+						} catch (NumberFormatException e2) {
+							setVisibleLabelConsole(true);
+							setLabelConsole("L'ID deve essere un numero");
+						}
+					}
+					else {
+						setVisibleLabelConsole(true);
+						setLabelConsole("Il campo ID è vuoto");
+					}
+						
+			}*/
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+					setVisibleLabelConsole(false);
+					setEnableBottonReport(false);
+					
+					String testSuiteID=textFieldID_TS.getText();
+					if (!testSuiteID.isEmpty()) {
+						try {
+							
+							try {
+								setEnableBottonEseguiTS(false);
+								setVisibleProgressBar(true);
+							
+								
+								BTester tester = new BTester();
+								String esito_suite=tester.eseguiTestSuite(Integer.parseInt(testSuiteID));
+								//countTSuiteEseguite+=1;
+								
+								Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+							
+								setEnableBottonEseguiTS(true);
+								setVisibleLabelConsole(true);
+								setLabelConsole("Test Suite eseguita");
+								addElementToList("["+sdf.format(timestamp).toString() + "]: " + esito_suite);
+								setVisibleProgressBar(false);
+								
+								
+							} catch (PersistanceException f) {
+								//f.printStackTrace();
+								setVisibleProgressBar(false);
+								setEnableBottonEseguiTS(true);
+								setVisibleLabelConsole(true);
+								setLabelConsole(f.getMessage());
+								
+							} catch (ConnectionException c) {
+								//e.printStackTrace();
+								setEnableBottonEseguiTS(true);
+								setVisibleProgressBar(false);
+								setVisibleLabelConsole(true);
+								setLabelConsole(c.getMessage());
+							}
+							finally {
+								setEnableBottonReport(true);
+							}
 							
 						} catch (NumberFormatException e2) {
 							setVisibleLabelConsole(true);
@@ -193,8 +277,6 @@ public class UI_TestingIoT {
 	public static void setEnableBottonReport(boolean bool) {
 		bottoneGeneraReport.setEnabled(bool);
 	}
-	
-	
 	
 	public static void addElementToList(String newLine) {
 		listConsole.add(newLine);

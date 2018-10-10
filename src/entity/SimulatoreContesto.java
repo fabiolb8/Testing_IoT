@@ -1,5 +1,8 @@
 package entity;
 
+import utilities.Mbed;
+import utilities.MbedException;
+
 public class SimulatoreContesto {
 
 	private final String descrizione = "Simulatore di un sistema di monitoraggio di fumo e ventilazione";
@@ -22,33 +25,55 @@ public class SimulatoreContesto {
 		return simulatore;
 	}
 	
-	public int leggiAllarme() throws Exception {
+	public int leggiAllarme() throws ConnectionException {
 		
 		Mbed mbed = Mbed.getInstance();
-
-		return mbed.rilevaAllarme();
+		int allarme = 0;
+		
+		try {
+			allarme = mbed.rilevaAllarme();
+		} catch (MbedException e) {
+			// TODO Auto-generated catch block
+			throw new ConnectionException("Errore di connessione");
+		}
+		
+		return allarme;
 	}
 
-	public int leggiVentilazione() throws Exception {
+	public int leggiVentilazione() throws ConnectionException {
 		
 		Mbed mbed = Mbed.getInstance();
+		int ventilazione = 0;
 		
-		return mbed.rilevaVentilazione();
+		try {
+			ventilazione = mbed.rilevaVentilazione();
+		} catch (MbedException e) {
+			// TODO Auto-generated catch block
+			throw new ConnectionException("Errore di connessione");
+		}
+		
+		return ventilazione;
 	}
 
-	public void avviaSimulazione() throws Exception {
+	public void avviaSimulazione() throws ConnectionException {
 		
 		Mbed mbed = Mbed.getInstance();
 		
-		mbed.setUpRPCConnection();
-		
-		int[] input = new int[4];
-		input[0]=getFumo();
-		for (int i=1; i<=3; i++) {
-			input[i] = temperature[i-1];
-		}		
-		
-		mbed.inviaSegnali(input);
+		try {
+			mbed.setUpRPCConnection();
+			
+			int[] input = new int[4];
+			input[0]=getFumo();
+			for (int i=1; i<=3; i++) {
+				input[i] = temperature[i-1];
+			}		
+			
+			mbed.inviaSegnali(input);
+			
+		} catch (MbedException e) {
+			// TODO Auto-generated catch block
+			throw new ConnectionException("Errore di connessione");
+		}
 		
 	}
 

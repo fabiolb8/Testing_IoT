@@ -16,16 +16,22 @@ public class XMLTestSuiteDAO implements ITestSuiteDAO {
 	}
 
 	@Override
-	public TestSuite readTestSuite(int id) throws JAXBException {
+	public TestSuite readTestSuite(int id) throws DAOException{
 		// TODO Auto-generated method stub
 
 		TestSuite suite = null;
 
-		JAXBContext jaxbContext = JAXBContext.newInstance(TestSuite.class);
-	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		     
-	    //We had written this file in marshalling example
-	    suite = (TestSuite) jaxbUnmarshaller.unmarshal( new File("TS"+id+".xml") );
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(TestSuite.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			     
+			//We had written this file in marshalling example
+			suite = (TestSuite) jaxbUnmarshaller.unmarshal( new File("TS"+id+".xml") );
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+
+			throw new DAOException("Impossibile leggere la suite "+id);
+		}
 		    
 		    /*
 		    System.out.println(suite.getId());

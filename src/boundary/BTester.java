@@ -3,6 +3,8 @@ package boundary;
 import java.io.FileNotFoundException;
 
 import controller.GestoreTestingIoT;
+import controller.PersistanceException;
+import entity.ConnectionException;
 
 public class BTester {
 
@@ -11,7 +13,7 @@ public class BTester {
 	 * @param id
 	 * @throws FileNotFoundException 
 	 */
-	public String eseguiTestSuite(int id) throws FileNotFoundException {
+	public String eseguiTestSuite(int id) throws PersistanceException, ConnectionException {
 		
 		GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
 		gestore.eseguiTestSuite(id);
@@ -23,7 +25,7 @@ public class BTester {
 		return newLine;
 	}
 
-	public void generaReport(String nomeFile) {
+	public void generaReport(String nomeFile) throws PersistanceException {
 
 		GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
 		gestore.generaReport(nomeFile);

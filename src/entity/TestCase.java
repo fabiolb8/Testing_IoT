@@ -55,7 +55,7 @@ public class TestCase {
 		
 	}
 
-	public void run() throws Exception {
+	public void run() throws ConnectionException {
 		
 
 		for (int i=0; i<listaStep.size(); i++) {

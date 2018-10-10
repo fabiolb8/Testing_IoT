@@ -1,11 +1,9 @@
 package controller;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
-
+import dao.DAOException;
 import dao.TXTTestSuiteDAO;
 import dao.XMLTestSuiteDAO;
 import entity.*;
@@ -38,44 +36,43 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 	}
 
 	@Override
-	public void eseguiTestSuite(int id) throws FileNotFoundException {
+	public void eseguiTestSuite(int id) throws PersistanceException, ConnectionException {
 		// TODO Auto-generated method stub
 		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		XMLTestSuiteDAO xml_parser = new XMLTestSuiteDAO();
 		TestSuite suite=null;
 		try {
 			
 			suite = xml_parser.readTestSuite(id);
-			
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			throw new FileNotFoundException();
-		}
-		
-		
-		try {
-	
 			suite.run();
-		
-		}catch(Exception e) {
-			e.printStackTrace();
-			//throw new SuiteException();
-		}
-		finally {
+			
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			throw new PersistanceException("Errore nel recupero della test suite "+id);
+			
+		} finally {
 			aggiungiTestSuite(suite);
 		}
-		
-		
-		
 	}
 
 	@Override
-	public void generaReport(String nomeFile) {
+	public void generaReport(String nomeFile) throws PersistanceException {
 
 		TXTTestSuiteDAO txt_report_printer = new TXTTestSuiteDAO(nomeFile);
 		
 		for (int i=0; i<listaTestSuite.size(); i++)
-			txt_report_printer.print(listaTestSuite.get(i));
+			try {
+				txt_report_printer.print(listaTestSuite.get(i));
+			} catch (DAOException e) {
+				// TODO Auto-generated catch block
+				throw new PersistanceException(e.getMessage());
+			}
 		
 		
 	}

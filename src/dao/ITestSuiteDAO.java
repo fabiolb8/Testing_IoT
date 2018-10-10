@@ -1,7 +1,5 @@
 package dao;
 
-import javax.xml.bind.JAXBException;
-
 import entity.*;
 
 public interface ITestSuiteDAO {
@@ -15,9 +13,9 @@ public interface ITestSuiteDAO {
 	/**
 	 * 
 	 * @param id
-	 * @throws JAXBException 
+	 * @throws DAOException 
 	 */
-	TestSuite readTestSuite(int id) throws JAXBException;
+	TestSuite readTestSuite(int id) throws DAOException;
 
 	/**
 	 * 

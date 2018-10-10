@@ -100,7 +100,7 @@ public class Step {
 	}
 
 
-	public void inviaInput() throws Exception {
+	public void inviaInput() throws ConnectionException {
 		
 		SimulatoreContesto sim = SimulatoreContesto.getInstance();
 		
@@ -110,7 +110,7 @@ public class Step {
 		
 	}
 
-	public void leggiOutput() throws Exception {
+	public void leggiOutput() throws ConnectionException {
 
 		SimulatoreContesto sim = SimulatoreContesto.getInstance();
 

@@ -1,12 +1,13 @@
 package gui;
 
-import java.io.FileNotFoundException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 import org.eclipse.swt.widgets.Display;
 
 import boundary.BTester;
+import controller.PersistanceException;
+import entity.ConnectionException;
 
 public class UIEseguiThread extends Thread{
 
@@ -42,17 +43,19 @@ public class UIEseguiThread extends Thread{
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleProgressBar(false));
 			
 			
-		} catch (FileNotFoundException f) {
+		} catch (PersistanceException f) {
 			//f.printStackTrace();
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleProgressBar(false));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonEseguiTS(true));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
-			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Test Suite non esistente"));
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole(f.getMessage()));
 			
-		} catch (Exception e) {
+		} catch (ConnectionException e) {
 			//e.printStackTrace();
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonEseguiTS(true));
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleProgressBar(false));
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setVisibleLabelConsole(true));
-			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole("Esecuzione interrotta"));
+			Display.getDefault().asyncExec(() -> UI_TestingIoT.setLabelConsole(e.getMessage()));
 		}
 		finally {
 			Display.getDefault().asyncExec(() -> UI_TestingIoT.setEnableBottonReport(true));
