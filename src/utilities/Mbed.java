@@ -40,7 +40,8 @@ public class Mbed {
 		try {
 			
 			//String portName = getPortName();
-			String portName = "COM4";
+			String portName = "COM4"; //PER PC PAOLO
+			//String portName = "COM3"; //PER PC FABIO
 			//String portName = null;
 		
 		    //Create an mbed object for communication over serial

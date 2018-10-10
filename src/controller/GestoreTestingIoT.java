@@ -64,15 +64,14 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 	@Override
 	public void generaReport(String nomeFile) throws PersistanceException {
 
-		TXTTestSuiteDAO txt_report_printer = new TXTTestSuiteDAO(nomeFile);
+		TXTTestSuiteDAO report_printer = new TXTTestSuiteDAO(nomeFile);
 		
-		for (int i=0; i<listaTestSuite.size(); i++)
-			try {
-				txt_report_printer.print(listaTestSuite.get(i));
-			} catch (DAOException e) {
-				// TODO Auto-generated catch block
-				throw new PersistanceException(e.getMessage());
-			}
+		try {
+			report_printer.printAll(listaTestSuite);
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			throw new PersistanceException(e.getMessage());
+		}
 		
 		
 	}

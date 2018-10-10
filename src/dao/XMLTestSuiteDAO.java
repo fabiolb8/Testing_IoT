@@ -26,7 +26,7 @@ public class XMLTestSuiteDAO implements ITestSuiteDAO {
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			     
 			//We had written this file in marshalling example
-			suite = (TestSuite) jaxbUnmarshaller.unmarshal( new File("TS"+id+".xml") );
+			suite = (TestSuite) jaxbUnmarshaller.unmarshal( new File("./repository/"+"TS"+id+".xml") );
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 

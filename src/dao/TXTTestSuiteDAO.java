@@ -5,49 +5,68 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.FileAlreadyExistsException;
+import java.util.List;
 
 import entity.*;
 
 public class TXTTestSuiteDAO implements ITestSuiteDAO {
 
 	private String nomeFile;
+	private FileOutputStream fileoutputstream = null;
+	private PrintStream printstream = null;
+	private File file= null;
 	
 	public TXTTestSuiteDAO(String nomeFile) {
 
 		this.nomeFile = nomeFile;
+		file=new File("./reports/"+nomeFile);
 	}
 
-	/**
-	 * 
-	 * @param testSuite
-	 */
-	public void print(TestSuite testSuite) throws DAOException{
 
-		//TS1 : numtestok timestamp
-		//TC1 : esito
-		//TC2 : esito
-		// _______
-		
-		FileOutputStream fileoutputstream = null;
-		PrintStream printstream = null;
+	public void printAll(List<TestSuite> listaTestSuite) throws DAOException{
 		
 		try {
 			
-		File file=new File(nomeFile);
-		
 		if (file.createNewFile()) {
 		
 			fileoutputstream = new FileOutputStream(file,true);
 			printstream = new PrintStream(fileoutputstream);
 			
-			printstream.println("TS"+testSuite.getId()+": " + testSuite.getDataEsecuzione() + " Numero test OK: " + testSuite.getNumTestOk() +" su " +testSuite.getListaTestCase().size());
-			for (int i=0; i<testSuite.getListaTestCase().size(); i++) {
+			for (int i=0; i<listaTestSuite.size(); i++) {
+			
+			printstream.println("TS"+listaTestSuite.get(i).getId()+": " + listaTestSuite.get(i).getDataEsecuzione() + " Numero test OK: " + 
+								listaTestSuite.get(i).getNumTestOk() +" su " +listaTestSuite.get(i).getListaTestCase().size());
+			printstream.println();
+			
+			for (int j=0; j<listaTestSuite.get(i).getListaTestCase().size(); j++) {
 				
-				TestCase test = testSuite.getListaTestCase().get(i);
-				printstream.println("  TC"+test.getId()+": " + test.getEsito().name());	
+				TestCase test = listaTestSuite.get(i).getListaTestCase().get(j);
+				String esitoTC=test.getEsito().name();
+				printstream.println("  TC"+test.getId()+": " + esitoTC);
+				
+				if(esitoTC.compareTo("NEGATIVO")==0) {
+					
+					for(int k=0; k<test.getListaStep().size();k++) {
+						Step step = test.getListaStep().get(k);
+						printstream.println("	Step # "+step.getNumero());
+						printstream.println("  	   Allarme Rilevato : "+step.getOutputAllarmeRilevato());
+						printstream.println("	   Ventilazione Rilevato : "+step.getOutputventilazioneRilevato());
+						printstream.println();
+					}
+					
+					
+				}
+				
+				printstream.println();
 			}
 			printstream.println("__________________________________________________________");
 			
+
+			
+			
+			}
+			
+			System.out.println("Report generato : "+" : nomeFile = "+nomeFile);
 			
 		}
 		else {
@@ -55,8 +74,6 @@ public class TXTTestSuiteDAO implements ITestSuiteDAO {
 		}
 			
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-
 			throw new DAOException("Impossibile generare il file di report");
 		}
 		
