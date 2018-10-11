@@ -1,0 +1,82 @@
+TS1: 2018-10-11 10:25:28.502 Numero test OK: 0 su 2
+
+  TC1: NEGATIVO
+	Step # 1
+  	   Allarme Rilevato : 1
+	   Ventilazione Rilevato : 0
+
+	Step # 2
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 1
+
+	Step # 3
+  	   Allarme Rilevato : 1
+	   Ventilazione Rilevato : 0
+
+	Step # 4
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 0
+
+	Step # 5
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 0
+
+	Step # 6
+  	   Allarme Rilevato : 1
+	   Ventilazione Rilevato : 1
+
+	Step # 7
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 0
+
+	Step # 8
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 0
+
+	Step # 9
+  	   Allarme Rilevato : 1
+	   Ventilazione Rilevato : 0
+
+	Step # 10
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 1
+
+	Step # 11
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 0
+
+
+  TC2: NEGATIVO
+	Step # 1
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 1
+
+	Step # 2
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 1
+
+	Step # 3
+  	   Allarme Rilevato : 1
+	   Ventilazione Rilevato : 0
+
+	Step # 4
+  	   Allarme Rilevato : 1
+	   Ventilazione Rilevato : 0
+
+	Step # 5
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 1
+
+
+__________________________________________________________
+TS2: 2018-10-11 10:28:21.89 Numero test OK: 1 su 2
+
+  TC1: POSITIVO
+
+  TC2: NEGATIVO
+	Step # 1
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 0
+
+
+__________________________________________________________
