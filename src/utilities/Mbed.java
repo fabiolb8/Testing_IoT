@@ -39,16 +39,13 @@ public class Mbed {
 	
 		try {
 			
-			String portName = getPortName();
-			//String portName = "COM4"; //PER PC PAOLO
+			//String portName = getPortName();
+			String portName = "COM4"; //PER PC PAOLO
 			//String portName = "COM3"; //PER PC FABIO
-			//String portName = null;
 			System.out.println(portName);
 		
-		    //Create an mbed object for communication over serial
 		    mbed_connection = new SerialRxTxRPC(portName, baudrate);
 		        
-		    //Create new Digital Outputs/Input on the mbed
 		    a0 = new DigitalOut(mbed_connection, pin_input[0]);
 		    a1 = new DigitalOut(mbed_connection, pin_input[1]);
 		    a2 = new DigitalOut(mbed_connection, pin_input[2]);
@@ -67,10 +64,8 @@ public class Mbed {
 	private String getPortName(){
 		
 	     CommPortIdentifier serialPortId = null;
-	     //static CommPortIdentifier sSerialPortId;
 	     @SuppressWarnings("rawtypes")
 		 Enumeration enumComm = null;
-	     //SerialPort serialPort;
 
 	     enumComm = CommPortIdentifier.getPortIdentifiers();
 	     while (enumComm.hasMoreElements()) {
@@ -83,10 +78,6 @@ public class Mbed {
       return serialPortId.getName();		
 	}
 
-	/**
-	 * 
-	 * @param input
-	 */
 	public void inviaSegnali(int input[]) throws MbedException {
 		
 		
@@ -97,7 +88,6 @@ public class Mbed {
 			a2.write(input[2]);
 			a3.write(input[3]);
 		} catch (Exception n) {
-			// TODO Auto-generated catch block
 			throw new MbedException("Scrittura non riuscita");
 		}
 
@@ -107,17 +97,12 @@ public class Mbed {
 		
 		try {
 			int a4_value = a4.read();
-			//System.out.println("Allarme rilevato: " + a4_value);
-
-			
 			return a4_value;
 			
 		} catch (NullPointerException n) {
-			// TODO Auto-generated catch block
 			throw new MbedException("Lettura allarme non riuscita");
 		}
 
-		//return 0;
 	}
 
 	public int rilevaVentilazione() throws MbedException {
@@ -125,21 +110,15 @@ public class Mbed {
 		
 		try {
 			int a5_value = a5.read();
-			//System.out.println("Ventilazione rilevata: " + a5_value);
-			//System.out.println();
-
 			mbed_connection.delete();
-			
 			return a5_value;
 			
 		} catch (NullPointerException n) {
-			// TODO Auto-generated catch block
 			mbed_connection.delete();
 
 			throw new MbedException("Lettura ventilazione non riuscita");
 		}
 
-		//return 0;
 	}
 
 }

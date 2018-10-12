@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import boundary.BTester;
+import controller.GestoreTestingIoT;
 import controller.PersistanceException;
 import entity.ConnectionException;
 
@@ -32,24 +33,10 @@ public class UI_TestingIoT {
 	private static Label labelEseguiTestSuite,lblConsole,labelReport,labelConsole;
 	private static ProgressBar progressBarEseguiTS;
 	private static List listConsole;
-	
-	private String risultato, UInomeFileReport;
-	
-	private static int counterTSuiteEseguite;
-	
-	//private ExecutorService service = Executors.newSingleThreadExecutor();
-
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+	private String risultato, UInomeFileReport;
+	private static int numTSuiteEseguite;
 
-	/*
-	public static void main(String[] args) {
-		try {
-			UI_TestingIoT_SWT window = new UI_TestingIoT_SWT();
-			window.open();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
 	
 	public static void main(String[] args) {
 
@@ -102,13 +89,9 @@ public class UI_TestingIoT {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				//Alfredo
-				//service.submit(new Runnable() {
-		        //public void run() {
 				
 				String testSuiteID=testoEsegui.getText();
 				
-				//Background
 				Thread esegui = new Thread(new Runnable() {
 				
 					@Override
@@ -123,11 +106,12 @@ public class UI_TestingIoT {
 									try {
 										
 										//UI update
+										Display.getDefault().asyncExec(() -> labelConsole.setVisible(false));
 										Display.getDefault().asyncExec(() -> progressBarEseguiTS.setVisible(true));
 										Display.getDefault().asyncExec(() -> bottoneGeneraReport.setEnabled(false));
 										Display.getDefault().asyncExec(() -> bottoneEseguiTS.setEnabled(false));
 										risultato = btester.eseguiTestSuite(Integer.parseInt(testSuiteID));
-										counterTSuiteEseguite++;
+										numTSuiteEseguite++;
 			
 										//Aggiorno label messaggio
 										Display.getDefault().asyncExec(() -> labelConsole.setVisible(true));
@@ -174,7 +158,6 @@ public class UI_TestingIoT {
 				esegui.start();
 				
 				
-				//UI update
 			}
 		});
 		bottoneEseguiTS.setBounds(339, 169, 142, 35);
@@ -226,10 +209,7 @@ public class UI_TestingIoT {
 		bottoneGeneraReport.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				
-				//Alfredo
-				//service.submit(new Runnable() {
-		        //public void run() {
-		        	
+			    	
 				labelConsole.setVisible(false);
 				UInomeFileReport = testoReport.getText();
 				
@@ -246,13 +226,14 @@ public class UI_TestingIoT {
 							else {
 								try {
 									
-									BTester tester = new BTester();
-									tester.generaReport(UInomeFileReport+".txt");
 									
 									Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
 									
-									//PAOLO
-									if(counterTSuiteEseguite>0) {
+									if(numTSuiteEseguite>0) {
+										GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
+										gestore.generaReport(UInomeFileReport+".txt");
+									
+										
 										Runtime.getRuntime().exec("notepad ./reports/"+UInomeFileReport+".txt");
 										Display.getDefault().asyncExec(() ->labelConsole.setText("Report salvato correttamente"));
 									}
@@ -266,7 +247,6 @@ public class UI_TestingIoT {
 									Display.getDefault().asyncExec(() ->labelConsole.setText(p.getMessage()));
 									
 								} catch (IOException i) {
-									// TODO Auto-generated catch block
 									Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
 									Display.getDefault().asyncExec(() ->labelConsole.setText("Impossibile aprire il report"));
 								}
@@ -280,13 +260,14 @@ public class UI_TestingIoT {
 							
 							try {
 								
-								BTester tester = new BTester();
-								tester.generaReport(UInomeFileReport+".txt");
 								
 								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
 								
 								//PAOLO
-								if(counterTSuiteEseguite>0) {
+								if(numTSuiteEseguite>0) {
+									GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
+									gestore.generaReport(UInomeFileReport+".txt");
+									
 									Runtime.getRuntime().exec("notepad ./reports/"+UInomeFileReport+".txt");
 									Display.getDefault().asyncExec(() ->labelConsole.setText("Report salvato correttamente"));
 								}
@@ -313,10 +294,7 @@ public class UI_TestingIoT {
 
 		        }
 		    
-		    //Alfredo
-			//});}
-			//}
-			
+		    
 		});
 		
 		bottoneGeneraReport.setLocation(342, 129);
