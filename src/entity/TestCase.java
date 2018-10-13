@@ -23,6 +23,8 @@ public class TestCase {
 	public TestCase() {
 
 		esito = Esito.NON_ESEGUITO;
+		listaStep=new ArrayList<Step>();
+		
 	}
 	
 	public List<Step> getListaStep() {

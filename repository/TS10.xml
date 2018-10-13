@@ -1,13 +1,2 @@
 <?xml version="1.0"?>
 
-<TestSuite>
-	<idSuite>10</idSuite>
-	<descrizione>Prova di NON ESEGUITO</descrizione>
-	<TestCase>
-		<idCase>1</idCase>
-		<descrizione>Test case senza step fatti bene</descrizione>
-		<Step>
-			<numero>1</numero>
-		</Step>
-		</TestCase>
-</TestSuite>

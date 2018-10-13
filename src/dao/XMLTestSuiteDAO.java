@@ -13,13 +13,11 @@ public class XMLTestSuiteDAO implements ITestSuiteDAO {
 
 	@Override
 	public void createTestSuite(TestSuite testSuite) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public TestSuite readTestSuite(int id) throws DAOException{
-		// TODO Auto-generated method stub
 
 		TestSuite suite = null;
 
@@ -27,19 +25,22 @@ public class XMLTestSuiteDAO implements ITestSuiteDAO {
 			JAXBContext jaxbContext = JAXBContext.newInstance(TestSuite.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			     
-			//We had written this file in marshalling example
 			suite = (TestSuite) jaxbUnmarshaller.unmarshal( new File("./repository/"+"TS"+id+".xml") );
 			
 			
-			suite.getListaTestCase().get(0).getListaStep().get(0);	//gestire oggetti null nel xml (?)
+			if (suite.getListaTestCase().isEmpty()) {
+				throw new DAOException("XML incompleto");
+			}
+			
+			for(int i=0;i<suite.getListaTestCase().size();i++) {
+				if(suite.getListaTestCase().get(i).getListaStep().isEmpty()) {
+					throw new DAOException("XML incompleto");
+				}
+			}
 			
 			
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-
 			throw new DAOException("Impossibile leggere la suite "+id);
-		} catch(NullPointerException e1) {
-			throw new DAOException("XML incompleto");
 		}
 		    
         
@@ -48,13 +49,11 @@ public class XMLTestSuiteDAO implements ITestSuiteDAO {
 
 	@Override
 	public void updateTestSuite(int id, TestSuite testSuite) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteTestSuite(int id) {
-		// TODO Auto-generated method stub
 		
 	}
 }
