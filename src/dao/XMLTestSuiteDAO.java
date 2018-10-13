@@ -5,6 +5,8 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+
+import entity.Step;
 import entity.TestSuite;
 
 public class XMLTestSuiteDAO implements ITestSuiteDAO {
@@ -27,32 +29,19 @@ public class XMLTestSuiteDAO implements ITestSuiteDAO {
 			     
 			//We had written this file in marshalling example
 			suite = (TestSuite) jaxbUnmarshaller.unmarshal( new File("./repository/"+"TS"+id+".xml") );
+			
+			
+			suite.getListaTestCase().get(0).getListaStep().get(0);	//gestire oggetti null nel xml (?)
+			
+			
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 
 			throw new DAOException("Impossibile leggere la suite "+id);
+		} catch(NullPointerException e1) {
+			throw new DAOException("XML incompleto");
 		}
 		    
-		    /*
-		    System.out.println(suite.getId());
-	        System.out.println(suite.getDescrizione());
-			
-		    for(TestCase tc  : suite.getListaTestCase())
-		    {
-		        System.out.println(tc.getId());
-		        System.out.println(tc.getDescrizione());
-		        
-		        for(Step s  : tc.getListaStep())
-			    {
-			        System.out.println(s.getNumero());
-			        System.out.println(s.getInputFumo());
-			        System.out.println(s.getInputTemperatura_zona1());
-			        System.out.println(s.getInputTemperatura_zona2());
-			        System.out.println(s.getInputTemperatura_zona3());
-			        
-			    }
-		    }
-		    */
         
 		return suite;
 	}

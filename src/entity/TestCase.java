@@ -38,6 +38,7 @@ public class TestCase {
 		boolean bool_esito = true;
 		int i = 0;
 		
+		
 		while (i<listaStep.size() && bool_esito) {
 			
 			if ((listaStep.get(i).getOutputAllarmeAtteso() != listaStep.get(i).getOutputAllarmeRilevato()) 
@@ -58,6 +59,7 @@ public class TestCase {
 	public void run() throws ConnectionException {
 		
 
+		
 		for (int i=0; i<listaStep.size(); i++) {
 			
 			
@@ -71,7 +73,9 @@ public class TestCase {
 			} 
 			
 			
+			
 		}
+		
 		
 		calcolaEsito();
 	}
@@ -99,6 +103,8 @@ public class TestCase {
 	public void setEsito(Esito esito) {
 		this.esito = esito;
 	}
+	
+	
 
 
 }

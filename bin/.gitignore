@@ -1,2 +1,6 @@
 /utilities/
 /gui/
+/controller/
+/entity/
+/dao/
+/boundary/

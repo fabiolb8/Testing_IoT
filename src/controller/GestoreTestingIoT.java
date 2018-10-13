@@ -10,10 +10,7 @@ import entity.*;
 
 public class GestoreTestingIoT implements IGestoreTestingIoT {
 
-	/**
-	 * 
-	 * @param testSuite
-	 */
+
 	private static GestoreTestingIoT gestore = null;
 	private List<TestSuite> listaTestSuite; 
 	
@@ -53,7 +50,6 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 			suite.run();
 			
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
 			throw new PersistanceException("Errore nel recupero della test suite "+id);
 			
 		} finally {

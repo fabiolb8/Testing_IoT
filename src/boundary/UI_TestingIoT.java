@@ -1,4 +1,4 @@
-package gui;
+package boundary;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -14,7 +14,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import boundary.BTester;
 import controller.GestoreTestingIoT;
 import controller.PersistanceException;
 import entity.ConnectionException;
@@ -34,7 +33,7 @@ public class UI_TestingIoT {
 	private static ProgressBar progressBarEseguiTS;
 	private static List listConsole;
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-	private String risultato, UInomeFileReport;
+	private String UInomeFileReport;
 	private static int numTSuiteEseguite;
 
 	
@@ -100,8 +99,8 @@ public class UI_TestingIoT {
 							if (!testSuiteID.isEmpty()) {
 								try {
 			
-									BTester btester = new BTester();
-									risultato = null;
+									//BTester btester = new BTester();
+									GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
 			
 									try {
 										
@@ -110,8 +109,18 @@ public class UI_TestingIoT {
 										Display.getDefault().asyncExec(() -> progressBarEseguiTS.setVisible(true));
 										Display.getDefault().asyncExec(() -> bottoneGeneraReport.setEnabled(false));
 										Display.getDefault().asyncExec(() -> bottoneEseguiTS.setEnabled(false));
-										risultato = btester.eseguiTestSuite(Integer.parseInt(testSuiteID));
 										numTSuiteEseguite++;
+										
+										
+										gestore.eseguiTestSuite(Integer.parseInt(testSuiteID));
+										
+										int numOK = gestore.getSuiteCorrente().getNumTestOk();
+										int numTOT = gestore.getSuiteCorrente().getListaTestCase().size();
+										
+										String newLine=new String("Test Suite "+ Integer.parseInt(testSuiteID) + ". Numero di test OK/TOT = " + numOK + "/" + numTOT);
+										
+										//risultato = btester.eseguiTestSuite(Integer.parseInt(testSuiteID));
+										
 			
 										//Aggiorno label messaggio
 										Display.getDefault().asyncExec(() -> labelConsole.setVisible(true));
@@ -119,7 +128,7 @@ public class UI_TestingIoT {
 			
 										//Aggiungo il risultato alla list
 										Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-										Display.getDefault().asyncExec(() -> listConsole.add("["+sdf.format(timestamp).toString() + "]: " + risultato +"\n"));
+										Display.getDefault().asyncExec(() -> listConsole.add("["+sdf.format(timestamp).toString() + "]: " + newLine +"\n"));
 										
 			
 									} catch (PersistanceException p) {
