@@ -54,7 +54,6 @@ public class Mbed {
 		    a5 = new DigitalIn(mbed_connection, pin_output[1]);
 		}
 		catch (NullPointerException n) {
-			
 			throw new MbedException("Connessione mbed non riuscita");
 		}
 		
@@ -99,7 +98,7 @@ public class Mbed {
 			int a4_value = a4.read();
 			return a4_value;
 			
-		} catch (NullPointerException n) {
+		} catch (Exception n) {
 			throw new MbedException("Lettura allarme non riuscita");
 		}
 
@@ -113,9 +112,8 @@ public class Mbed {
 			mbed_connection.delete();
 			return a5_value;
 			
-		} catch (NullPointerException n) {
+		} catch (Exception n) {
 			mbed_connection.delete();
-
 			throw new MbedException("Lettura ventilazione non riuscita");
 		}
 

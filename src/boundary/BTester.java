@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import controller.GestoreTestingIoT;
+import controller.IGestoreTestingIoT;
 import controller.PersistanceException;
 import entity.ConnectionException;
 
