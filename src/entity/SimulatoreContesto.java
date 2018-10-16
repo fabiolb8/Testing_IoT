@@ -63,7 +63,7 @@ public class SimulatoreContesto {
 			mbed.setUpRPCConnection();
 			
 			int[] input = new int[4];
-			input[0]=getFumo();
+			input[0]=this.fumo;
 			for (int i=1; i<=3; i++) {
 				input[i] = temperature[i-1];
 			}		
