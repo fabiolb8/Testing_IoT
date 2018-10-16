@@ -42,7 +42,6 @@ public class Mbed {
 			String portName = getPortName();
 			//String portName = "COM4"; //PER PC PAOLO
 			//String portName = "COM3"; //PER PC FABIO
-			//System.out.println(portName);
 		
 		    mbed_connection = new SerialRxTxRPC(portName, baudrate);
 		        

@@ -19,6 +19,10 @@ public class TXTTestSuiteDAO implements ITestSuiteDAO {
 	public TXTTestSuiteDAO(String nomeFile) {
 
 		this.nomeFile = nomeFile;
+		File directory = new File("./reports");
+		if (!directory.exists()) {
+			directory.mkdir();
+		}
 		file=new File("./reports/"+nomeFile);
 	}
 
@@ -66,7 +70,7 @@ public class TXTTestSuiteDAO implements ITestSuiteDAO {
 			
 			}
 			
-			System.out.println("Report generato : "+" : nomeFile = "+nomeFile);
+			System.out.println("Report generato : "+nomeFile);
 			
 		}
 		else {

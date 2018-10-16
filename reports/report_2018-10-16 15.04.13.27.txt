@@ -1,0 +1,11 @@
+TS2: 2018-10-16 15:04:07.849 Numero test OK: 1 su 2
+
+  TC1: POSITIVO
+
+  TC2: NEGATIVO
+	Step # 1
+  	   Allarme Rilevato : 0
+	   Ventilazione Rilevato : 0
+
+
+__________________________________________________________
