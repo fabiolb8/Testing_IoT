@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import controller.GestoreTestingIoT;
-import controller.IGestoreTestingIoT;
 import controller.PersistanceException;
 import entity.ConnectionException;
 
@@ -27,21 +26,20 @@ import org.eclipse.swt.events.SelectionEvent;
 public class BTester {
 
 	protected Shell shell;
-	private static Text testoEsegui,testoReport;
-	private static Button GhostButton,bottoneEseguiTS,bottoneGeneraReport;
-	private static Group groupEsegui,groupConsole,groupReport;
-	private static Label labelEseguiTestSuite,lblConsole,labelReport,labelConsole;
-	private static ProgressBar progressBarEseguiTS;
-	private static List listConsole;
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+	private Text testoEsegui,testoReport;
+	private Button GButton,bottoneEseguiTS,bottoneGeneraReport;
+	private Group groupEsegui,groupConsole,groupReport;
+	private Label labelEseguiTestSuite,lblConsole,labelReport,labelConsole;
+	private ProgressBar progressBarEseguiTS;
+	private List listConsole;
+	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 	private String UInomeFileReport;
-	private static int numTSuiteEseguite;
+	private int numTSuiteEseguite;
 
 	
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -52,9 +50,7 @@ public class BTester {
 				}	
 			}
 		});
-		
 	}
-
 
 	public void open() {
 		Display display = Display.getDefault();
@@ -75,101 +71,14 @@ public class BTester {
 		shell.setSize(1201, 655);
 		shell.setText("Sistema Testing IoT");
 		
-		GhostButton = new Button(shell, SWT.NONE);
-		GhostButton.setLocation(0, 0);
-		GhostButton.setSize(1, 1);
+		GButton = new Button(shell, SWT.NONE);
+		GButton.setLocation(0, 0);
+		GButton.setSize(1, 1);
 		
 		groupEsegui = new Group(shell, SWT.NONE);
 		groupEsegui.setBounds(23, 10, 502, 282);
 		
 		bottoneEseguiTS = new Button(groupEsegui, SWT.NONE);
-		
-		bottoneEseguiTS.addSelectionListener(new SelectionAdapter() {
-			
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				
-				
-				String testSuiteID=testoEsegui.getText();
-				
-				Thread esegui = new Thread(new Runnable() {
-				
-					@Override
-					public void run() {
-					
-							if (!testSuiteID.isEmpty()) {
-								try {
-			
-									//BTester btester = new BTester();
-									GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
-			
-									try {
-										
-										//UI update
-										Display.getDefault().asyncExec(() -> labelConsole.setVisible(false));
-										Display.getDefault().asyncExec(() -> progressBarEseguiTS.setVisible(true));
-										Display.getDefault().asyncExec(() -> bottoneGeneraReport.setEnabled(false));
-										Display.getDefault().asyncExec(() -> bottoneEseguiTS.setEnabled(false));
-										numTSuiteEseguite++;
-										
-										
-										gestore.eseguiTestSuite(Integer.parseInt(testSuiteID));
-										
-										int numOK = gestore.getSuiteCorrente().getNumTestOk();
-										int numTOT = gestore.getSuiteCorrente().getListaTestCase().size();
-										
-										String newLine=new String("Test Suite "+ Integer.parseInt(testSuiteID) + ". Numero di test OK/TOT = " + numOK + "/" + numTOT);
-										
-										//risultato = btester.eseguiTestSuite(Integer.parseInt(testSuiteID));
-										
-			
-										//Aggiorno label messaggio
-										Display.getDefault().asyncExec(() -> labelConsole.setVisible(true));
-										Display.getDefault().asyncExec(() -> labelConsole.setText("Test suite eseguita"));
-			
-										//Aggiungo il risultato alla list
-										Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-										Display.getDefault().asyncExec(() -> listConsole.add("["+sdf.format(timestamp).toString() + "]: " + newLine +"\n"));
-										
-			
-									} catch (PersistanceException p) {
-										//f.printStackTrace();
-										Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
-										Display.getDefault().asyncExec(() ->labelConsole.setText(p.getMessage()));
-										
-									} catch (ConnectionException c) {
-										//e.printStackTrace();
-										Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
-										Display.getDefault().asyncExec(() ->labelConsole.setText(c.getMessage()));
-										
-									} finally {
-										
-										Display.getDefault().asyncExec(() ->progressBarEseguiTS.setVisible(false));
-										Display.getDefault().asyncExec(() ->bottoneGeneraReport.setEnabled(true));
-										Display.getDefault().asyncExec(() ->bottoneEseguiTS.setEnabled(true));
-			
-									}
-									
-								} catch (NumberFormatException e2) {
-			
-									Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
-									Display.getDefault().asyncExec(() ->labelConsole.setText("L'ID deve essere un numero"));
-								}
-							}
-							else {
-			
-								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
-								Display.getDefault().asyncExec(() ->labelConsole.setText("Il campo ID è vuoto"));
-							}
-			
-						
-					}
-				});	
-				esegui.start();
-				
-				
-			}
-		});
 		bottoneEseguiTS.setBounds(339, 169, 142, 35);
 		bottoneEseguiTS.setText("Esegui Test Suite");
 		
@@ -213,21 +122,79 @@ public class BTester {
 		labelReport.setSize(151, 25);
 		labelReport.setText("Nome file di report");
 		
-		
 		bottoneGeneraReport = new Button(groupReport, SWT.NONE);
-	
-		bottoneGeneraReport.addSelectionListener(new SelectionAdapter() {
+		bottoneGeneraReport.setLocation(342, 129);
+		bottoneGeneraReport.setSize(151, 35);
+		bottoneGeneraReport.setText("Genera Report");
+		
+		
+		bottoneEseguiTS.addSelectionListener(new SelectionAdapter() {	
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-			    	
-				labelConsole.setVisible(false);
-				UInomeFileReport = testoReport.getText();
-				
-		        Thread report = new Thread(new Runnable() {
-
+				String testSuiteID=testoEsegui.getText();
+				Thread esegui = new Thread(new Runnable() {
 					@Override
 					public void run() {
-
+							if (!testSuiteID.isEmpty()) {
+								try {
+									GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
+			
+									try {
+										Display.getDefault().asyncExec(() ->labelConsole.setVisible(false));
+										Display.getDefault().asyncExec(() ->progressBarEseguiTS.setVisible(true));
+										Display.getDefault().asyncExec(() ->bottoneGeneraReport.setEnabled(false));
+										Display.getDefault().asyncExec(() ->bottoneEseguiTS.setEnabled(false));
+										numTSuiteEseguite++;
+										gestore.eseguiTestSuite(Integer.parseInt(testSuiteID));
+										int numOK = gestore.getSuiteCorrente().getNumTestOk();
+										int numTOT = gestore.getSuiteCorrente().getListaTestCase().size();
+										String newLine=new String("Test Suite "+ Integer.parseInt(testSuiteID) + ". Numero di test OK/TOT = " + numOK + "/" + numTOT);
+										
+										Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
+										Display.getDefault().asyncExec(() ->labelConsole.setText("Test suite eseguita"));
+			
+										Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+										Display.getDefault().asyncExec(() ->listConsole.add("["+sdf.format(timestamp).toString() + "]: " + newLine +"\n"));
+			
+									} catch (PersistanceException p) {
+										Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
+										Display.getDefault().asyncExec(() ->labelConsole.setText(p.getMessage()));
+										
+									} catch (ConnectionException c) {
+										Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
+										Display.getDefault().asyncExec(() ->labelConsole.setText(c.getMessage()));
+										
+									} finally {
+										Display.getDefault().asyncExec(() ->progressBarEseguiTS.setVisible(false));
+										Display.getDefault().asyncExec(() ->bottoneGeneraReport.setEnabled(true));
+										Display.getDefault().asyncExec(() ->bottoneEseguiTS.setEnabled(true));
+									}
+									
+								} catch (NumberFormatException e2) {
+									Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
+									Display.getDefault().asyncExec(() ->labelConsole.setText("L'ID deve essere un numero"));
+								}
+							}
+							else {
+			
+								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
+								Display.getDefault().asyncExec(() ->labelConsole.setText("Il campo ID è vuoto"));
+							}			
+					}
+				});	
+				esegui.start();
+			}
+		});
+		
+		bottoneGeneraReport.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+					
+				labelConsole.setVisible(false);
+				UInomeFileReport = testoReport.getText();
+		        Thread report = new Thread(new Runnable() {
+					@Override
+					public void run() {
 						if (!UInomeFileReport.isEmpty()) {
 							if (UInomeFileReport.contains(".txt")) {
 								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
@@ -235,23 +202,16 @@ public class BTester {
 							}
 							else {
 								try {
-									
-									
 									Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
-									
 									if(numTSuiteEseguite>0) {
 										GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
 										gestore.generaReport(UInomeFileReport+".txt");
-									
-										
 										Runtime.getRuntime().exec("notepad ./reports/"+UInomeFileReport+".txt");
 										Display.getDefault().asyncExec(() ->labelConsole.setText("Report salvato correttamente"));
 									}
 									else {
 										Display.getDefault().asyncExec(() ->labelConsole.setText("Report vuoto"));
 									}
-									
-									
 								} catch(PersistanceException p) {
 									Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
 									Display.getDefault().asyncExec(() ->labelConsole.setText(p.getMessage()));
@@ -266,50 +226,29 @@ public class BTester {
 							Timestamp timestamp=new Timestamp(System.currentTimeMillis());
 							sdf.format(timestamp);
 							UInomeFileReport=new String("report_"+timestamp.toString().replace(':', '.'));
-		
-							
 							try {
-								
-								
 								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
-								
-								//PAOLO
 								if(numTSuiteEseguite>0) {
 									GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
 									gestore.generaReport(UInomeFileReport+".txt");
-									
 									Runtime.getRuntime().exec("notepad ./reports/"+UInomeFileReport+".txt");
 									Display.getDefault().asyncExec(() ->labelConsole.setText("Report salvato correttamente"));
 								}
 								else {
 									Display.getDefault().asyncExec(() ->labelConsole.setText("Report vuoto"));
 								}
-								
-								
 							} catch(PersistanceException p) {
 								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
 								Display.getDefault().asyncExec(() ->labelConsole.setText(p.getMessage()));
 								
 							} catch (IOException i) {
-								// TODO Auto-generated catch block
 								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
 								Display.getDefault().asyncExec(() ->labelConsole.setText("Impossibile aprire il report"));
 							}
 						} 
-						
 					}});
 		        report.start();
-				
-			        
-
 		        }
-		    
-		    
 		});
-		
-		bottoneGeneraReport.setLocation(342, 129);
-		bottoneGeneraReport.setSize(151, 35);
-		bottoneGeneraReport.setText("Genera Report");
 	}
 }
-

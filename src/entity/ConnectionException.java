@@ -1,5 +1,6 @@
 package entity;
 
+@SuppressWarnings("serial")
 public class ConnectionException extends Exception{
 
 	public ConnectionException() {

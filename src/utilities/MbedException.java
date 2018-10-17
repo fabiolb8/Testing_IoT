@@ -1,5 +1,6 @@
 package utilities;
 
+@SuppressWarnings("serial")
 public class MbedException extends Exception{
 	
 	public MbedException() {

@@ -9,11 +9,9 @@ public class SimulatoreContesto {
 	private final String deviceTarget = "STM32F401RE_Nucleo";
 	private int fumo;
 	private int temperature[];
-
 	private static SimulatoreContesto simulatore = null;
 	
 	private SimulatoreContesto(){
-		
 		temperature = new int[3];
 	}
 	
@@ -29,52 +27,39 @@ public class SimulatoreContesto {
 		
 		Mbed mbed = Mbed.getInstance();
 		int allarme = 0;
-		
 		try {
 			allarme = mbed.rilevaAllarme();
 		} catch (MbedException e) {
-			// TODO Auto-generated catch block
 			throw new ConnectionException("Errore di connessione");
 		}
-		
 		return allarme;
 	}
 
 	public int leggiVentilazione() throws ConnectionException {
-		
 		Mbed mbed = Mbed.getInstance();
 		int ventilazione = 0;
-		
 		try {
 			ventilazione = mbed.rilevaVentilazione();
 		} catch (MbedException e) {
-			// TODO Auto-generated catch block
 			throw new ConnectionException("Errore di connessione");
 		}
-		
 		return ventilazione;
 	}
 
 	public void avviaSimulazione() throws ConnectionException {
 		
 		Mbed mbed = Mbed.getInstance();
-		
 		try {
 			mbed.setUpRPCConnection();
-			
 			int[] input = new int[4];
 			input[0]=this.fumo;
 			for (int i=1; i<=3; i++) {
-				input[i] = temperature[i-1];
+				input[i]=this.temperature[i-1];
 			}		
-			
 			mbed.inviaSegnali(input);
-			
 		} catch (MbedException e) {
-			// TODO Auto-generated catch block
 			throw new ConnectionException("Errore di connessione");
 		}
-		
 	}
 
 	public int getFumo() {

@@ -2,11 +2,11 @@
 
 <TestSuite>
     <id>2</id>
-    <descrizione>Prova veloce un esito ok e uno no</descrizione>
-    
+    <descrizione>Test Suite (il tc 2 ha esito negativo)</descrizione>
+
     <TestCase>
     	<id>1</id>
-    	<descrizione>Prova esito positivo</descrizione>
+    	<descrizione>TC con esito positivo</descrizione>
         
         <Step>
             <numero>1</numero>
@@ -22,7 +22,7 @@
    
    <TestCase>
     	<id>2</id>
-    	<descrizione>Prova esito negativo</descrizione>
+    	<descrizione>TC con esito negativo</descrizione>
         
         <Step>
             <numero>1</numero>
@@ -30,7 +30,7 @@
             <inputTemperatura_zona1>1</inputTemperatura_zona1>
             <inputTemperatura_zona2>1</inputTemperatura_zona2>
             <inputTemperatura_zona3>1</inputTemperatura_zona3>
-            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
             <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
         </Step>
         

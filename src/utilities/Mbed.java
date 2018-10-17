@@ -1,5 +1,4 @@
 package utilities;
-
 import java.util.Enumeration;
 
 import org.mbed.RPC.DigitalIn;
@@ -14,15 +13,9 @@ public class Mbed {
 	private final String[] pin_input = {"a0_tx","a1_tx","a2_tx","a3_tx"};
 	private final String[] pin_output = {"a4_tx","a5_tx"};
 	private final int baudrate = 9600;
-    
 	private static mbed mbed_connection;
-    private DigitalOut a0;
-    private DigitalOut a1;
-    private DigitalOut a2;
-    private DigitalOut a3;
-    private DigitalIn a4;
-    private DigitalIn a5;
-
+    private DigitalOut a0,a1,a2,a3;
+    private DigitalIn a4,a5;
 	private static Mbed mbed_instance = null;
 	
 	private Mbed(){}
@@ -58,41 +51,34 @@ public class Mbed {
 		
 	}
 	
-	@SuppressWarnings("unused")
 	private String getPortName(){
-		
 	     CommPortIdentifier serialPortId = null;
 	     @SuppressWarnings("rawtypes")
 		 Enumeration enumComm = null;
-
 	     enumComm = CommPortIdentifier.getPortIdentifiers();
+	     
 	     while (enumComm.hasMoreElements()) {
 	        serialPortId = (CommPortIdentifier) enumComm.nextElement();
 	        if(serialPortId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
 	         System.out.println(serialPortId.getName());
 	       }
 	     }
-
       return serialPortId.getName();		
 	}
 
 	public void inviaSegnali(int input[]) throws MbedException {
-		
-		
+	
 		try {
-			
 			a0.write(input[0]);
 			a1.write(input[1]);
 			a2.write(input[2]);
 			a3.write(input[3]);
 		} catch (Exception n) {
-			throw new MbedException("Scrittura non riuscita");
+			throw new MbedException("Invio segnali non riuscita");
 		}
-
 	}
 
 	public int rilevaAllarme() throws MbedException {
-		
 		try {
 			int a4_value = a4.read();
 			return a4_value;
@@ -104,8 +90,7 @@ public class Mbed {
 	}
 
 	public int rilevaVentilazione() throws MbedException {
-		
-		
+				
 		try {
 			int a5_value = a5.read();
 			mbed_connection.delete();
@@ -115,7 +100,5 @@ public class Mbed {
 			mbed_connection.delete();
 			throw new MbedException("Lettura ventilazione non riuscita");
 		}
-
 	}
-
 }

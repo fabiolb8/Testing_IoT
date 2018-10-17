@@ -21,10 +21,39 @@ public class TestCase {
 	private Esito esito;
 	
 	public TestCase() {
-
 		esito = Esito.NON_ESEGUITO;
 		listaStep=new ArrayList<Step>();
+	}
 		
+	
+	public void run() throws ConnectionException {
+
+		for (int i=0; i<listaStep.size(); i++) {
+			try {
+				listaStep.get(i).inviaInput();
+				Thread.sleep(2000);
+				listaStep.get(i).leggiOutput();
+			} catch (InterruptedException e) {
+				setEsito(Esito.NON_ESEGUITO);
+			} 
+		}
+		calcolaEsito();
+	}
+	
+	private void calcolaEsito() {
+
+		boolean bool_esito = true;
+		int i = 0;
+		while (i<listaStep.size() && bool_esito) {
+			if ((listaStep.get(i).getOutputAllarmeAtteso() != listaStep.get(i).getOutputAllarmeRilevato()) 
+					|| (listaStep.get(i).getOutputVentilazioneAtteso() != listaStep.get(i).getOutputventilazioneRilevato()))
+				bool_esito = false;
+			i++;
+		}
+		if (bool_esito)
+			setEsito(Esito.POSITIVO);
+		else 
+			setEsito(Esito.NEGATIVO);
 	}
 	
 	public List<Step> getListaStep() {
@@ -34,53 +63,6 @@ public class TestCase {
 	public void setListaStep(List<Step> listaStep) {
 		this.listaStep = listaStep;
 	}	
-	
-	public void calcolaEsito() {
-
-		boolean bool_esito = true;
-		int i = 0;
-		
-		
-		while (i<listaStep.size() && bool_esito) {
-			
-			if ((listaStep.get(i).getOutputAllarmeAtteso() != listaStep.get(i).getOutputAllarmeRilevato()) 
-					|| (listaStep.get(i).getOutputVentilazioneAtteso() != listaStep.get(i).getOutputventilazioneRilevato()))
-				bool_esito = false;
-			
-			i++;
-			
-		}
-		
-		if (bool_esito)
-			setEsito(Esito.POSITIVO);
-		else 
-			setEsito(Esito.NEGATIVO);
-		
-	}
-
-	public void run() throws ConnectionException {
-		
-
-		
-		for (int i=0; i<listaStep.size(); i++) {
-			
-			
-			try {
-				listaStep.get(i).inviaInput();
-				Thread.sleep(2000);
-				listaStep.get(i).leggiOutput();
-
-			} catch (InterruptedException e) {
-				setEsito(Esito.NON_ESEGUITO);
-			} 
-			
-			
-			
-		}
-		
-		
-		calcolaEsito();
-	}
 	
 	public int getId() {
 		return id;

@@ -1,5 +1,4 @@
 package entity;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -21,11 +20,35 @@ public class Step {
 	private int inputTemperatura_zona3;
 	@XmlElement(name = "outputAllarmeAtteso")
 	private int outputAllarmeAtteso;
-	private int outputAllarmeRilevato;
 	@XmlElement(name = "outputVentilazioneAtteso")
 	private int outputVentilazioneAtteso;
+	private int outputAllarmeRilevato;
 	private int outputventilazioneRilevato;
 	
+	
+	public void inviaInput() throws ConnectionException {
+		
+		SimulatoreContesto sim = SimulatoreContesto.getInstance();
+		sim.setFumo(inputFumo);
+		sim.setTemperature(inputTemperatura_zona1, inputTemperatura_zona2, inputTemperatura_zona3);
+		sim.avviaSimulazione();
+		
+	}
+
+	public void leggiOutput() throws ConnectionException {
+
+		SimulatoreContesto sim = SimulatoreContesto.getInstance();
+		int allarme = sim.leggiAllarme();
+		setOutputAllarmeRilevato(allarme);
+		int ventilazione = sim.leggiVentilazione();		
+		setOutputventilazioneRilevato(ventilazione);
+		/*
+		System.out.println("Step numero "+this.numero);
+		System.out.println("	Allarme Rilevato : "+this.outputAllarmeRilevato);
+		System.out.println("	Ventilazione Rilevato : "+this.outputventilazioneRilevato);
+		System.out.println();
+		*/
+	}
 	
 	public int getNumero() {
 		return numero;
@@ -99,34 +122,5 @@ public class Step {
 		this.outputventilazioneRilevato = outputventilazioneRilevato;
 	}
 
-
-	public void inviaInput() throws ConnectionException {
-		
-		SimulatoreContesto sim = SimulatoreContesto.getInstance();
-		
-		sim.setFumo(inputFumo);
-		sim.setTemperature(inputTemperatura_zona1, inputTemperatura_zona2, inputTemperatura_zona3);
-		sim.avviaSimulazione();
-		
-	}
-
-	public void leggiOutput() throws ConnectionException {
-
-		SimulatoreContesto sim = SimulatoreContesto.getInstance();
-
-		int allarme = sim.leggiAllarme();
-		setOutputAllarmeRilevato(allarme);
-		
-
-		int ventilazione = sim.leggiVentilazione();		
-		setOutputventilazioneRilevato(ventilazione);
-
-		System.out.println("Step numero "+this.numero);
-		System.out.println("	Allarme Rilevato : "+this.outputAllarmeRilevato);
-		System.out.println("	Ventilazione Rilevato : "+this.outputventilazioneRilevato);
-		System.out.println();
-		
-		
-	}
 
 }

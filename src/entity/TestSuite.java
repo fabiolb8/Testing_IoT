@@ -1,16 +1,10 @@
 package entity;
-
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import com.sun.javafx.scene.control.skin.TreeTableRowSkin;
-import com.sun.xml.internal.ws.api.pipe.ThrowableContainerPropertySet;
-
 import javax.xml.bind.annotation.XmlAccessType;
 
 @XmlRootElement(name = "TestSuite")
@@ -33,10 +27,31 @@ public class TestSuite {
 		listaTestCase = new ArrayList<TestCase>();
 	}
 	
+	
+	public void run() throws ConnectionException {
+		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		sdf.format(timestamp);
+		setDataEsecuzione(timestamp);
+		for (int i=0; i<listaTestCase.size(); i++) {
+			listaTestCase.get(i).run();
+		}
+		calcolaNumTestOk();
+	}
+
+	private void calcolaNumTestOk() {
+		int count = 0;
+		for (int i=0; i<listaTestCase.size(); i++) {
+			if (listaTestCase.get(i).getEsito()==Esito.POSITIVO)
+				count++;
+		}
+		setNumTestOk(count);
+	}
+	
 	public List<TestCase> getListaTestCase() {
 		return listaTestCase;
 	}
-
+	
 	public void setListaTestCase(List<TestCase> listaTestCase) {
 		this.listaTestCase = listaTestCase;
 	}
@@ -71,42 +86,5 @@ public class TestSuite {
 
 	public void setNumTestOk(int numTestOk) {
 		this.numTestOk = numTestOk;
-	}
-
-	public void run() throws ConnectionException {
-		// TODO - implement TestSuite.run
-		
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		sdf.format(timestamp);
-		setDataEsecuzione(timestamp);
-		
-		
-		for (int i=0; i<listaTestCase.size(); i++) {
-			
-			listaTestCase.get(i).run();
-			
-		}
-		
-		
-		calcolaNumTestOk();
-
-	}
-
-	public void calcolaNumTestOk() {
-		
-		int count = 0;
-		
-		for (int i=0; i<listaTestCase.size(); i++) {
-			
-			if (listaTestCase.get(i).getEsito()==Esito.POSITIVO)
-				count++;
-			
-		}
-		
-		setNumTestOk(count);
-	}
-
-	public void addTestCase (TestCase testCase) {
-		listaTestCase.add(testCase);
 	}
 }
