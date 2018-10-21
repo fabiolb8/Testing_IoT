@@ -33,8 +33,6 @@ public class Mbed {
 		try {
 			
 			String portName = getPortName();
-			//String portName = "COM4"; //PER PC PAOLO
-			//String portName = "COM3"; //PER PC FABIO
 		
 		    mbed_connection = new SerialRxTxRPC(portName, baudrate);
 		        
