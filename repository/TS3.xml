@@ -6,15 +6,15 @@
     
     <TestCase>
     	<id>1</id>
-    	<descrizione>Prove casuali : tutti i test con esito positivo</descrizione>
+    	<descrizione>Prove casuali</descrizione>
         
         <Step>
             <numero>1</numero>
             <inputFumo>0</inputFumo>
-            <inputTemperatura_zona1>1</inputTemperatura_zona1>
+            <inputTemperatura_zona1>0</inputTemperatura_zona1>
             <inputTemperatura_zona2>1</inputTemperatura_zona2>
             <inputTemperatura_zona3>1</inputTemperatura_zona3>
-            <outputAllarmeAtteso>1</outputAllarmeAtteso>
+            <outputAllarmeAtteso>0</outputAllarmeAtteso>
             <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
         </Step>
         
@@ -38,46 +38,6 @@
             <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
         </Step>
         
-        <Step>
-            <numero>4</numero>
-            <inputFumo>1</inputFumo>
-            <inputTemperatura_zona1>1</inputTemperatura_zona1>
-            <inputTemperatura_zona2>1</inputTemperatura_zona2>
-            <inputTemperatura_zona3>0</inputTemperatura_zona3>
-            <outputAllarmeAtteso>1</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
-        </Step>
-        
-        <Step>
-            <numero>5</numero>
-            <inputFumo>0</inputFumo>
-            <inputTemperatura_zona1>0</inputTemperatura_zona1>
-            <inputTemperatura_zona2>0</inputTemperatura_zona2>
-            <inputTemperatura_zona3>0</inputTemperatura_zona3>
-            <outputAllarmeAtteso>0</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
-        </Step>
-        
-        
-        <Step>
-            <numero>6</numero>
-            <inputFumo>0</inputFumo>
-            <inputTemperatura_zona1>1</inputTemperatura_zona1>
-            <inputTemperatura_zona2>0</inputTemperatura_zona2>
-            <inputTemperatura_zona3>1</inputTemperatura_zona3>
-            <outputAllarmeAtteso>0</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
-        </Step>
-        
-        <Step>
-            <numero>7</numero>
-            <inputFumo>0</inputFumo>
-            <inputTemperatura_zona1>0</inputTemperatura_zona1>
-            <inputTemperatura_zona2>0</inputTemperatura_zona2>
-            <inputTemperatura_zona3>1</inputTemperatura_zona3>
-            <outputAllarmeAtteso>0</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
-        </Step>
         
     </TestCase>
     

@@ -60,59 +60,9 @@
         
         <Step>
             <numero>6</numero>
-            <inputFumo>0</inputFumo>
-            <inputTemperatura_zona1>1</inputTemperatura_zona1>
-            <inputTemperatura_zona2>0</inputTemperatura_zona2>
-            <inputTemperatura_zona3>0</inputTemperatura_zona3>
-            <outputAllarmeAtteso>0</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
-        </Step>
-        
-        <Step>
-            <numero>7</numero>
             <inputFumo>1</inputFumo>
             <inputTemperatura_zona1>0</inputTemperatura_zona1>
             <inputTemperatura_zona2>1</inputTemperatura_zona2>
-            <inputTemperatura_zona3>0</inputTemperatura_zona3>
-            <outputAllarmeAtteso>0</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
-        </Step>
-        
-        <Step>
-            <numero>8</numero>
-            <inputFumo>1</inputFumo>
-            <inputTemperatura_zona1>0</inputTemperatura_zona1>
-            <inputTemperatura_zona2>0</inputTemperatura_zona2>
-            <inputTemperatura_zona3>0</inputTemperatura_zona3>
-            <outputAllarmeAtteso>0</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
-        </Step>
-        
-        <Step>
-            <numero>9</numero>
-            <inputFumo>1</inputFumo>
-            <inputTemperatura_zona1>0</inputTemperatura_zona1>
-            <inputTemperatura_zona2>0</inputTemperatura_zona2>
-            <inputTemperatura_zona3>1</inputTemperatura_zona3>
-            <outputAllarmeAtteso>0</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
-        </Step>
-        
-         <Step>
-            <numero>10</numero>
-            <inputFumo>1</inputFumo>
-            <inputTemperatura_zona1>0</inputTemperatura_zona1>
-            <inputTemperatura_zona2>1</inputTemperatura_zona2>
-            <inputTemperatura_zona3>0</inputTemperatura_zona3>
-            <outputAllarmeAtteso>0</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
-        </Step>
-        
-        <Step>
-            <numero>11</numero>
-            <inputFumo>1</inputFumo>
-            <inputTemperatura_zona1>1</inputTemperatura_zona1>
-            <inputTemperatura_zona2>0</inputTemperatura_zona2>
             <inputTemperatura_zona3>0</inputTemperatura_zona3>
             <outputAllarmeAtteso>0</outputAllarmeAtteso>
             <outputVentilazioneAtteso>0</outputVentilazioneAtteso>
@@ -124,18 +74,9 @@
     	<id>2</id>
     	<descrizione>Uscita ventilazione alta</descrizione>
         
+               
         <Step>
             <numero>1</numero>
-            <inputFumo>0</inputFumo>
-            <inputTemperatura_zona1>1</inputTemperatura_zona1>
-            <inputTemperatura_zona2>1</inputTemperatura_zona2>
-            <inputTemperatura_zona3>1</inputTemperatura_zona3>
-            <outputAllarmeAtteso>1</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
-        </Step>
-        
-        <Step>
-            <numero>2</numero>
             <inputFumo>0</inputFumo>
             <inputTemperatura_zona1>0</inputTemperatura_zona1>
             <inputTemperatura_zona2>1</inputTemperatura_zona2>
@@ -144,19 +85,10 @@
             <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
         </Step>
         
-        <Step>
-            <numero>3</numero>
-            <inputFumo>0</inputFumo>
-            <inputTemperatura_zona1>1</inputTemperatura_zona1>
-            <inputTemperatura_zona2>1</inputTemperatura_zona2>
-            <inputTemperatura_zona3>1</inputTemperatura_zona3>
-            <outputAllarmeAtteso>1</outputAllarmeAtteso>
-            <outputVentilazioneAtteso>1</outputVentilazioneAtteso>
-        </Step>
         
         
         <Step>
-            <numero>4</numero>
+            <numero>2</numero>
             <inputFumo>0</inputFumo>
             <inputTemperatura_zona1>1</inputTemperatura_zona1>
             <inputTemperatura_zona2>1</inputTemperatura_zona2>
@@ -167,7 +99,7 @@
         
         
         <Step>
-            <numero>5</numero>
+            <numero>3</numero>
             <inputFumo>0</inputFumo>
             <inputTemperatura_zona1>0</inputTemperatura_zona1>
             <inputTemperatura_zona2>1</inputTemperatura_zona2>

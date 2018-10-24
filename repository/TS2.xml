@@ -2,11 +2,11 @@
 
 <TestSuite>
     <id>2</id>
-    <descrizione>Test Suite (il tc 2 ha esito negativo)</descrizione>
+    <descrizione>Test Suite (tc con esito negativo)</descrizione>
 
     <TestCase>
     	<id>1</id>
-    	<descrizione>TC con esito positivo</descrizione>
+    	<descrizione>TC no ventilazione, no fumo</descrizione>
         
         <Step>
             <numero>1</numero>
@@ -22,7 +22,7 @@
    
    <TestCase>
     	<id>2</id>
-    	<descrizione>TC con esito negativo</descrizione>
+    	<descrizione>TC no allarme, si ventilazione</descrizione>
         
         <Step>
             <numero>1</numero>
