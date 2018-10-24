@@ -20,7 +20,9 @@ public class XMLTestSuiteDAO implements ITestSuiteDAO {
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(TestSuite.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			//parsing test suite dal file specificato
 			suite = (TestSuite) jaxbUnmarshaller.unmarshal( new File("./repository/"+"TS"+id+".xml") );
+			//controllo se non sono specificati test case e/o step
 			if (suite.getListaTestCase().isEmpty()) {
 				throw new DAOException("XML incompleto");
 			}

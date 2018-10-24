@@ -4,7 +4,7 @@ import utilities.Mbed;
 import utilities.MbedException;
 
 public class SimulatoreContesto {
-
+	//pattern singleton
 	private final String descrizione = "Simulatore di un sistema di monitoraggio dei livelli di fumo e temperatura";
 	private final String deviceTarget = "STM32F401RE_Nucleo";
 	private int fumo;
@@ -28,6 +28,7 @@ public class SimulatoreContesto {
 		Mbed mbed = Mbed.getInstance();
 		int allarme = 0;
 		try {
+			//rilevo stato allarme
 			allarme = mbed.rilevaAllarme();
 		} catch (MbedException e) {
 			throw new ConnectionException("Errore di connessione");
@@ -39,6 +40,7 @@ public class SimulatoreContesto {
 		Mbed mbed = Mbed.getInstance();
 		int ventilazione = 0;
 		try {
+			//rilevo stato ventilazione
 			ventilazione = mbed.rilevaVentilazione();
 		} catch (MbedException e) {
 			throw new ConnectionException("Errore di connessione");
@@ -50,12 +52,15 @@ public class SimulatoreContesto {
 		
 		Mbed mbed = Mbed.getInstance();
 		try {
+			//stabilisco connessione con board
 			mbed.setUpRPCConnection();
+			//adatto gli input
 			int[] input = new int[4];
 			input[0]=this.fumo;
 			for (int i=1; i<=3; i++) {
 				input[i]=this.temperature[i-1];
-			}		
+			}	
+			//imposto gli input della simulazione
 			mbed.inviaSegnali(input);
 		} catch (MbedException e) {
 			throw new ConnectionException("Errore di connessione");

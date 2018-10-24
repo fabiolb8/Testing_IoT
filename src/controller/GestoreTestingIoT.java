@@ -7,7 +7,7 @@ import dao.XMLTestSuiteDAO;
 import entity.*;
 
 public class GestoreTestingIoT implements IGestoreTestingIoT {
-
+	//pattern singleton
 
 	private static GestoreTestingIoT gestore = null;
 	private List<TestSuite> listaTestSuite; 
@@ -36,7 +36,9 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 		XMLTestSuiteDAO xml_parser = new XMLTestSuiteDAO();
 		TestSuite suite=null;
 		try {	
+			//recupero della test suite dal file XML
 			suite = xml_parser.readTestSuite(id);
+			//esecuzione test suite
 			suite.run();
 		} catch (DAOException e) {
 			throw new PersistanceException("Errore nel recupero della test suite "+id);	
@@ -50,6 +52,7 @@ public class GestoreTestingIoT implements IGestoreTestingIoT {
 
 		TXTTestSuiteDAO report_printer = new TXTTestSuiteDAO(nomeFile);
 		try {
+			//generazione report
 			report_printer.printAll(listaTestSuite);
 		} catch (DAOException e) {
 			throw new PersistanceException(e.getMessage());

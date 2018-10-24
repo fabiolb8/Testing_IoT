@@ -67,6 +67,7 @@ public class BTester {
 	
 	protected void createContents() {
 		
+		//creazione elementi interfaccia grafica
 		shell = new Shell(SWT.SHELL_TRIM & ~SWT.RESIZE & SWT.TITLE | SWT.CLOSE | SWT.BORDER); 
 		shell.setSize(1201, 655);
 		shell.setText("Sistema Testing IoT");
@@ -127,7 +128,7 @@ public class BTester {
 		bottoneGeneraReport.setSize(151, 35);
 		bottoneGeneraReport.setText("Genera Report");
 		
-		
+		//listener bottone EseguiTestSuite
 		bottoneEseguiTS.addSelectionListener(new SelectionAdapter() {	
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -146,7 +147,11 @@ public class BTester {
 										Display.getDefault().asyncExec(() ->bottoneGeneraReport.setEnabled(false));
 										Display.getDefault().asyncExec(() ->bottoneEseguiTS.setEnabled(false));
 										numTSuiteEseguite++;
+										
+										//chiamata metodo eseguiTestSuite del gestore
 										gestore.eseguiTestSuite(Integer.parseInt(testSuiteID));
+										
+										
 										int numOK = gestore.getSuiteCorrente().getNumTestOk();
 										int numTOT = gestore.getSuiteCorrente().getListaTestCase().size();
 										String newLine=new String("Test Suite "+ Integer.parseInt(testSuiteID) + ". Numero di test OK/TOT = " + numOK + "/" + numTOT);
@@ -187,6 +192,8 @@ public class BTester {
 			}
 		});
 		
+		
+		//listener bottone GeneraReport
 		bottoneGeneraReport.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 					
@@ -195,6 +202,7 @@ public class BTester {
 		        Thread report = new Thread(new Runnable() {
 					@Override
 					public void run() {
+						//controllo se l'input utente è nullo
 						if (!UInomeFileReport.isEmpty()) {
 							if (UInomeFileReport.contains(".txt")) {
 								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
@@ -204,8 +212,13 @@ public class BTester {
 								try {
 									Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
 									if(numTSuiteEseguite>0) {
+										
 										GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
+										
+										//chiamata metodo generaReport del gestore
 										gestore.generaReport(UInomeFileReport+".txt");
+										
+										
 										Runtime.getRuntime().exec("notepad ./reports/"+UInomeFileReport+".txt");
 										Display.getDefault().asyncExec(() ->labelConsole.setText("Report salvato correttamente"));
 									}
@@ -222,6 +235,7 @@ public class BTester {
 								}
 							}
 						}
+						//se l'utente non ha inserito il nome del file, si utilizza il timestamp
 						else {
 							Timestamp timestamp=new Timestamp(System.currentTimeMillis());
 							sdf.format(timestamp);
@@ -229,7 +243,10 @@ public class BTester {
 							try {
 								Display.getDefault().asyncExec(() ->labelConsole.setVisible(true));
 								if(numTSuiteEseguite>0) {
+									
 									GestoreTestingIoT gestore = GestoreTestingIoT.getInstance();
+						
+									//chiamata al metodo generaReport del gestore 
 									gestore.generaReport(UInomeFileReport+".txt");
 									Runtime.getRuntime().exec("notepad ./reports/"+UInomeFileReport+".txt");
 									Display.getDefault().asyncExec(() ->labelConsole.setText("Report salvato correttamente"));

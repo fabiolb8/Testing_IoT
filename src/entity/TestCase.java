@@ -27,7 +27,7 @@ public class TestCase {
 		
 	
 	public void run() throws ConnectionException {
-
+		//eseguo test case, in caso di errori l'esito è settato a NON_ESEGUITO
 		for (int i=0; i<listaStep.size(); i++) {
 			try {
 				listaStep.get(i).inviaInput();
@@ -44,6 +44,7 @@ public class TestCase {
 
 		boolean bool_esito = true;
 		int i = 0;
+		//scorro lista step e verifico che gli output attesi corrispondano a quelli rilevati
 		while (i<listaStep.size() && bool_esito) {
 			if ((listaStep.get(i).getOutputAllarmeAtteso() != listaStep.get(i).getOutputAllarmeRilevato()) 
 					|| (listaStep.get(i).getOutputVentilazioneAtteso() != listaStep.get(i).getOutputventilazioneRilevato()))

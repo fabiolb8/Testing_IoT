@@ -27,7 +27,7 @@ public class Step {
 	
 	
 	public void inviaInput() throws ConnectionException {
-		
+		//imposto parametri simulatore
 		SimulatoreContesto sim = SimulatoreContesto.getInstance();
 		sim.setFumo(inputFumo);
 		sim.setTemperature(inputTemperatura_zona1, inputTemperatura_zona2, inputTemperatura_zona3);
@@ -37,12 +37,13 @@ public class Step {
 
 	public void leggiOutput() throws ConnectionException {
 
+		//rilevo uscite simulatore
 		SimulatoreContesto sim = SimulatoreContesto.getInstance();
 		int allarme = sim.leggiAllarme();
 		setOutputAllarmeRilevato(allarme);
 		int ventilazione = sim.leggiVentilazione();		
 		setOutputventilazioneRilevato(ventilazione);
-		/*
+		/*debug
 		System.out.println("Step numero "+this.numero);
 		System.out.println("	Allarme Rilevato : "+this.outputAllarmeRilevato);
 		System.out.println("	Ventilazione Rilevato : "+this.outputventilazioneRilevato);

@@ -30,6 +30,7 @@ public class TestSuite {
 	
 	public void run() throws ConnectionException {
 		
+		//imposta data di esecuzione e avvio i test case 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		sdf.format(timestamp);
 		setDataEsecuzione(timestamp);

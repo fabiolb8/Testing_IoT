@@ -9,7 +9,7 @@ import org.mbed.RPC.mbed;
 import gnu.io.CommPortIdentifier;
 
 public class Mbed {
-
+	//pattern singleton
 	private final String[] pin_input = {"a0_tx","a1_tx","a2_tx","a3_tx"};
 	private final String[] pin_output = {"a4_tx","a5_tx"};
 	private final int baudrate = 9600;
@@ -29,11 +29,11 @@ public class Mbed {
 	}
 
 	public void setUpRPCConnection() throws MbedException {
-	
+		//creo connessione con la board e instanzio oggetti per la comunicazione
 		try {
 			
 			String portName = getPortName();
-		
+			
 		    mbed_connection = new SerialRxTxRPC(portName, baudrate);
 		        
 		    a0 = new DigitalOut(mbed_connection, pin_input[0]);
@@ -55,6 +55,7 @@ public class Mbed {
 		 Enumeration enumComm = null;
 	     enumComm = CommPortIdentifier.getPortIdentifiers();
 	     
+	     //cerco porta seriale per la comunicazione
 	     while (enumComm.hasMoreElements()) {
 	        serialPortId = (CommPortIdentifier) enumComm.nextElement();
 	        if(serialPortId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
@@ -67,6 +68,7 @@ public class Mbed {
 	public void inviaSegnali(int input[]) throws MbedException {
 	
 		try {
+			//uso oggetti RPCDigitalOut per inviare comandi di scrittura alla board
 			a0.write(input[0]);
 			a1.write(input[1]);
 			a2.write(input[2]);
@@ -78,6 +80,7 @@ public class Mbed {
 
 	public int rilevaAllarme() throws MbedException {
 		try {
+			//uso oggetto RPCDigitalIn per inviare comando di lettura alla board
 			int a4_value = a4.read();
 			return a4_value;
 			
@@ -90,6 +93,7 @@ public class Mbed {
 	public int rilevaVentilazione() throws MbedException {
 				
 		try {
+			//uso oggetto RPCDigitalIn per inviare comando di lettura alla board
 			int a5_value = a5.read();
 			mbed_connection.delete();
 			return a5_value;
